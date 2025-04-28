@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/talk-to-agent"
+    },
+    {
+      "path": "./libs/layouts"
     }
   ]
 }
