@@ -1,0 +1,10 @@
+{
+  "name": "talk-to-agent-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "talk-to-agent"
+    ]
+  }
+}
