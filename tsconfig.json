@@ -11,6 +11,9 @@
     },
     {
       "path": "./libs/layouts"
+    },
+    {
+      "path": "./libs/theme"
     }
   ]
 }
