@@ -4651,6 +4651,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@talk-to-agent/store@workspace:libs/store":
+  version: 0.0.0-use.local
+  resolution: "@talk-to-agent/store@workspace:libs/store"
+  languageName: unknown
+  linkType: soft
+
 "@talk-to-agent/theme@workspace:libs/theme":
   version: 0.0.0-use.local
   resolution: "@talk-to-agent/theme@workspace:libs/theme"
