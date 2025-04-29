@@ -4516,6 +4516,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@talk-to-agent/assets@workspace:libs/assets":
+  version: 0.0.0-use.local
+  resolution: "@talk-to-agent/assets@workspace:libs/assets"
+  languageName: unknown
+  linkType: soft
+
 "@talk-to-agent/layouts@workspace:libs/layouts":
   version: 0.0.0-use.local
   resolution: "@talk-to-agent/layouts@workspace:libs/layouts"
