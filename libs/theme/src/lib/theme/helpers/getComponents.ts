@@ -13,6 +13,25 @@ export function getComponents({
         position: 'static',
       },
     },
+    MuiButton: {
+      defaultProps: {
+        variant: 'contained',
+      },
+      styleOverrides: {
+        contained: {
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+        containedSizeMedium: {
+          padding: spacing(1.25, 2),
+        },
+        root: {
+          textTransform: 'none',
+        },
+      },
+    },
     MuiContainer: {
       defaultProps: {
         maxWidth: 'md',

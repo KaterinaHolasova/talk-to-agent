@@ -4,6 +4,7 @@ export function getPalette(): ThemeOptions['palette'] {
   return {
     primary: {
       main: '#DD86DF',
+      dark: '#D157D3',
       contrastText: '#1F1B20',
     },
     text: {
