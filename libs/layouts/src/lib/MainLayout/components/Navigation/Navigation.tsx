@@ -33,7 +33,12 @@ export function Navigation() {
             <Box role="presentation" sx={{ width: DRAWER_WIDTH }}>
               <List>
                 {NAVIGATION.map(({ label, to }) => (
-                  <NavigationListItem key={to} to={to} label={label} />
+                  <NavigationListItem
+                    closeDrawer={() => setOpen(false)}
+                    key={to}
+                    label={label}
+                    to={to}
+                  />
                 ))}
               </List>
             </Box>
