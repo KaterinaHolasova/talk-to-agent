@@ -1,4 +1,4 @@
-import { alpha, type Theme, type ThemeOptions } from '@mui/material';
+import { type Theme, type ThemeOptions } from '@mui/material';
 import {
   GilroyBold,
   GilroyRegular,
@@ -8,6 +8,7 @@ import {
 export function getComponents({
   breakpoints,
   palette,
+  shape,
   spacing,
   transitions,
   typography,
@@ -55,7 +56,7 @@ export function getComponents({
       styleOverrides: {
         maxWidthMd: {
           [breakpoints.up('md')]: {
-            maxWidth: '1032px',
+            maxWidth: '1042px',
           },
         },
         root: {
@@ -103,15 +104,40 @@ export function getComponents({
           fontWeight: typography.fontWeightBold,
         },
         underlineAlways: {
+          position: 'relative',
           textDecoration: 'none',
-          borderBottom: `2px solid ${palette.primary.main}`,
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '-3px',
+            left: 0,
+            margin: '0 -2px',
+            borderRadius: shape.borderRadius,
+            width: 'calc(100% + 4px)',
+            height: '2px',
+            background: palette.primary.main,
+          },
         },
         underlineHover: {
-          transition: transitions.create('border-color'),
-          borderBottom: '2px solid transparent',
+          position: 'relative',
           '&:hover': {
-            borderColor: palette.primary.main,
             textDecoration: 'none',
+          },
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '-3px',
+            left: 0,
+            opacity: 0,
+            transition: transitions.create('opacity'),
+            margin: '0 -2px',
+            borderRadius: shape.borderRadius,
+            width: 'calc(100% + 4px)',
+            height: '2px',
+            background: palette.primary.main,
+          },
+          '&:hover::after': {
+            opacity: 1,
           },
         },
       },
@@ -131,7 +157,18 @@ export function getComponents({
           display: 'inline-block',
           fontWeight: typography.fontWeightBold,
           '.MuiListItemButton-root.Mui-selected &': {
-            borderBottom: `2px solid ${palette.primary.main}`,
+            position: 'relative',
+          },
+          '.MuiListItemButton-root.Mui-selected &::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '-3px',
+            left: 0,
+            margin: '0 -2px',
+            borderRadius: shape.borderRadius,
+            width: 'calc(100% + 4px)',
+            height: '2px',
+            background: palette.primary.main,
           },
         },
       },
