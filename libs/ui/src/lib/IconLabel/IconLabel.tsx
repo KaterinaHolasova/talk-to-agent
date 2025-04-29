@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { ReactNode } from 'react';
 
 type Props = {
@@ -11,7 +11,9 @@ export function IconLabel(props: Props) {
 
   return (
     <Stack alignItems="center" direction="row" spacing={1.5}>
-      {icon}
+      <Box color="text.primary" display="flex">
+        {icon}
+      </Box>
       <Typography variant="body1">{label}</Typography>
     </Stack>
   );
