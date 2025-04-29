@@ -40,5 +40,13 @@
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"
+  ],
+  "references": [
+    {
+      "path": "../../libs/theme/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/layouts/tsconfig.lib.json"
+    }
   ]
 }
