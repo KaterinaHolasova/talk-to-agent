@@ -3,6 +3,7 @@ import {
   getBaseTypography,
   getComponents,
   getPalette,
+  getShadows,
   getShape,
   getTypography,
 } from './helpers';
@@ -15,5 +16,6 @@ export let theme = createTheme({
 
 theme = createTheme(theme, {
   components: getComponents(theme),
+  shadows: getShadows(),
   typography: getTypography(theme),
 });

@@ -12,6 +12,7 @@ export function getPalette(): ThemeOptions['palette'] {
     },
     background: {
       default: '#F9EBFA',
+      paper: '#F4D6F5',
     },
   };
 }

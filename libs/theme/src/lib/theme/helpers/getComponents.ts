@@ -1,4 +1,4 @@
-import { type Theme, type ThemeOptions } from '@mui/material';
+import { alpha, type Theme, type ThemeOptions } from '@mui/material';
 import { GilroyBold, GilroyRegular } from '@talk-to-agent/assets';
 
 export function getComponents({
@@ -14,6 +14,18 @@ export function getComponents({
         color: 'transparent',
         elevation: 0,
         position: 'static',
+      },
+      styleOverrides: {
+        colorTransparent: {
+          backgroundImage: 'none',
+        },
+      },
+    },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: alpha(palette.primary.contrastText, 0.15),
+        },
       },
     },
     MuiButton: {
@@ -85,10 +97,30 @@ export function getComponents({
         },
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+    },
     MuiListItemText: {
       styleOverrides: {
         primary: {
+          display: 'inline',
           fontWeight: typography.fontWeightBold,
+          '.MuiListItemButton-root.Mui-selected &': {
+            borderBottom: `2px solid ${palette.primary.main}`,
+          },
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
         },
       },
     },
