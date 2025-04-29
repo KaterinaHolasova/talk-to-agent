@@ -95,6 +95,35 @@ export function getComponents({
         }
       `,
     },
+    MuiDialog: {
+      defaultProps: {
+        fullWidth: true,
+      },
+      styleOverrides: {
+        paperWidthXs: {
+          maxWidth: '280px',
+          minHeight: '280px',
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          padding: spacing(5, 3),
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        colorError: {
+          backgroundColor: palette.error.main,
+          color: palette.error.contrastText,
+          '&:hover': {
+            backgroundColor: palette.error.dark,
+          },
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         color: 'textPrimary',

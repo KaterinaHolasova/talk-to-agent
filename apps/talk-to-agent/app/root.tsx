@@ -32,9 +32,9 @@ export function Layout(props: Props) {
         <Links />
       </head>
       <body>
-        <StoreProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </StoreProvider>
+        <ThemeProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -12,6 +12,11 @@ const COLOR_PALETTE = {
     dark: '#D157D3',
     contrastText: '#1F1B20',
   },
+  error: {
+    main: '#EF7679',
+    dark: '#D64D4F',
+    contrastText: '#FCFBFC',
+  },
   text: {
     primary: '#4F1650',
   },
@@ -26,6 +31,7 @@ export function getPalette(): ThemeOptions['palette'] {
   return {
     primary: COLOR_PALETTE.primary,
     text: COLOR_PALETTE.text,
+    error: COLOR_PALETTE.error,
     background: COLOR_PALETTE.background,
     action: {
       active: COLOR_PALETTE.text.primary,
