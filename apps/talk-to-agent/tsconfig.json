@@ -3,6 +3,12 @@
   "include": [],
   "references": [
     {
+      "path": "../../libs/theme"
+    },
+    {
+      "path": "../../libs/layouts"
+    },
+    {
       "path": "./tsconfig.app.json"
     },
     {
