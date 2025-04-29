@@ -26,6 +26,14 @@ export function getTypography({
       letterSpacing: '0.04375rem',
       textTransform: 'none',
     },
+    body1: {
+      fontSize: '16px',
+      lineHeight: '20px',
+      fontWeight: typography.fontWeightBold,
+      [breakpoints.up('md')]: {
+        fontSize: '18px',
+      },
+    },
     body2: {
       fontSize: '14px',
       lineHeight: '20px',
