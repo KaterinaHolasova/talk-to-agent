@@ -4626,6 +4626,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@talk-to-agent/ui@workspace:libs/ui":
+  version: 0.0.0-use.local
+  resolution: "@talk-to-agent/ui@workspace:libs/ui"
+  languageName: unknown
+  linkType: soft
+
 "@testing-library/dom@npm:10.4.0":
   version: 10.4.0
   resolution: "@testing-library/dom@npm:10.4.0"
