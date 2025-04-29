@@ -3,7 +3,10 @@ import { GilroyBold, GilroyRegular } from '@talk-to-agent/assets';
 
 export function getComponents({
   breakpoints,
+  palette,
   spacing,
+  transitions,
+  typography,
 }: Theme): ThemeOptions['components'] {
   return {
     MuiAppBar: {
@@ -59,6 +62,28 @@ export function getComponents({
           src: local('Gilroy Bold'), local('Gilroy-Bold'), url(${GilroyBold}) format('truetype');
         }
       `,
+    },
+    MuiLink: {
+      defaultProps: {
+        color: 'textPrimary',
+      },
+      styleOverrides: {
+        root: {
+          fontWeight: typography.fontWeightBold,
+        },
+        underlineAlways: {
+          textDecoration: 'none',
+          borderBottom: `2px solid ${palette.primary.main}`,
+        },
+        underlineHover: {
+          transition: transitions.create('border-color'),
+          borderBottom: '2px solid transparent',
+          '&:hover': {
+            borderColor: palette.primary.main,
+            textDecoration: 'none',
+          },
+        },
+      },
     },
     MuiToolbar: {
       defaultProps: {

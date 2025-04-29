@@ -1,6 +1,6 @@
-import { AppBar, Box, Button, Container, Link, Toolbar } from '@mui/material';
+import { AppBar, Button, Container, Toolbar } from '@mui/material';
 import { ReactNode } from 'react';
-import { NavLink } from 'react-router';
+import { Navigation } from './components';
 
 type Props = {
   children: ReactNode;
@@ -14,14 +14,7 @@ export function MainLayout(props: Props) {
       <AppBar>
         <Container>
           <Toolbar>
-            <Box component="nav" flexGrow={1}>
-              <Link component={NavLink} to="/">
-                Home
-              </Link>
-              <Link component={NavLink} to="/about">
-                About
-              </Link>
-            </Box>
+            <Navigation />
             <Button>Call Jessica</Button>
           </Toolbar>
         </Container>
