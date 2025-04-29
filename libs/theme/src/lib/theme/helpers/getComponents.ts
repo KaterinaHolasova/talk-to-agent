@@ -85,6 +85,13 @@ export function getComponents({
         },
       },
     },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: {
+          fontWeight: typography.fontWeightBold,
+        },
+      },
+    },
     MuiToolbar: {
       defaultProps: {
         disableGutters: true,

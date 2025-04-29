@@ -3828,6 +3828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remixicon/react@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "@remixicon/react@npm:4.6.0"
+  peerDependencies:
+    react: ">=18.2.0"
+  checksum: 10c0/52e21dabd5b5149206f2ef2d8ff59e38a0b7f4a043435ba65b1b8d1c41c755daea84da6c64e80f2ada0e582b4436366dbcef318add96ec11393b08b259b49df8
+  languageName: node
+  linkType: hard
+
 "@rollup/rollup-android-arm-eabi@npm:4.40.1":
   version: 4.40.1
   resolution: "@rollup/rollup-android-arm-eabi@npm:4.40.1"
@@ -4553,6 +4562,7 @@ __metadata:
     "@react-router/dev": "npm:^7.2.0"
     "@react-router/node": "npm:^7.2.0"
     "@react-router/serve": "npm:^7.2.0"
+    "@remixicon/react": "npm:^4.6.0"
     "@swc-node/register": "npm:~1.9.1"
     "@swc/cli": "npm:~0.6.0"
     "@swc/core": "npm:~1.5.7"

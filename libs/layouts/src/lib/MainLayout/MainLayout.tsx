@@ -1,4 +1,4 @@
-import { AppBar, Button, Container, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import { ReactNode } from 'react';
 import { Navigation } from './components';
 
@@ -14,7 +14,9 @@ export function MainLayout(props: Props) {
       <AppBar>
         <Container>
           <Toolbar>
-            <Navigation />
+            <Box flexGrow={1}>
+              <Navigation />
+            </Box>
             <Button>Call Jessica</Button>
           </Toolbar>
         </Container>
