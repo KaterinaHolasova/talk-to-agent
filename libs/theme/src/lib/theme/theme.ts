@@ -1,6 +1,11 @@
 import { createTheme } from '@mui/material';
-import { getPalette } from './helpers';
+import { getBaseTypography, getComponents, getPalette } from './helpers';
 
-export const theme = createTheme({
+export let theme = createTheme({
   palette: getPalette(),
+  typography: getBaseTypography(),
+});
+
+theme = createTheme(theme, {
+  components: getComponents(),
 });
