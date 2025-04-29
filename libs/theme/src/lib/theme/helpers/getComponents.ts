@@ -1,5 +1,9 @@
 import { alpha, type Theme, type ThemeOptions } from '@mui/material';
-import { GilroyBold, GilroyRegular } from '@talk-to-agent/assets';
+import {
+  GilroyBold,
+  GilroyRegular,
+  GilroySemibold,
+} from '@talk-to-agent/assets';
 
 export function getComponents({
   breakpoints,
@@ -78,6 +82,12 @@ export function getComponents({
           font-style: normal;
           font-weight: normal;
           src: local('Gilroy'), local('Gilroy-Regular'), url(${GilroyRegular}) format('truetype');
+        }
+        @font-face {
+          font-family: 'Gilroy';
+          font-style: normal;
+          font-weight: 600;
+          src: local('Gilroy Semibold'), local('Gilroy-Semibold'), url(${GilroySemibold}) format('truetype');
         }
         @font-face {
           font-family: 'Gilroy';

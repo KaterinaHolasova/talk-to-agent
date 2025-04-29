@@ -1,1 +1,1 @@
-export { GilroyBold, GilroyRegular } from './fonts';
+export { GilroyBold, GilroyRegular, GilroySemibold } from './fonts';
