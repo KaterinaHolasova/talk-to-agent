@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { dialogReducer } from './slices';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    dialog: dialogReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
