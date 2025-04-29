@@ -109,7 +109,7 @@ export function getComponents({
     MuiListItemText: {
       styleOverrides: {
         primary: {
-          display: 'inline',
+          display: 'inline-block',
           fontWeight: typography.fontWeightBold,
           '.MuiListItemButton-root.Mui-selected &': {
             borderBottom: `2px solid ${palette.primary.main}`,

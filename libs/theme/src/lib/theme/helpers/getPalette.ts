@@ -14,5 +14,8 @@ export function getPalette(): ThemeOptions['palette'] {
       default: '#F9EBFA',
       paper: '#F4D6F5',
     },
+    action: {
+      active: '#4F1650',
+    },
   };
 }
