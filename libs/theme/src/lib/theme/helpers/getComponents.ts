@@ -1,8 +1,15 @@
-import { type ThemeOptions } from '@mui/material';
+import { type Theme, type ThemeOptions } from '@mui/material';
 import { GilroyBold, GilroyRegular } from '@talk-to-agent/assets';
 
-export function getComponents(): ThemeOptions['components'] {
+export function getComponents({ spacing }: Theme): ThemeOptions['components'] {
   return {
+    MuiAppBar: {
+      defaultProps: {
+        color: 'transparent',
+        elevation: 0,
+        position: 'static',
+      },
+    },
     MuiCssBaseline: {
       styleOverrides: `
         @font-face {

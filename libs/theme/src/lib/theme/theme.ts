@@ -7,5 +7,5 @@ export let theme = createTheme({
 });
 
 theme = createTheme(theme, {
-  components: getComponents(),
+  components: getComponents(theme),
 });
