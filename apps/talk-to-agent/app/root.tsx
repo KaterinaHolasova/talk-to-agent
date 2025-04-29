@@ -8,6 +8,7 @@ import {
   ScrollRestoration,
   type MetaFunction,
 } from 'react-router';
+import { StoreProvider } from '@talk-to-agent/store';
 
 type Props = {
   children: ReactNode;
@@ -31,7 +32,9 @@ export function Layout(props: Props) {
         <Links />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </StoreProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
