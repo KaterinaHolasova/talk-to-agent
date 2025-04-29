@@ -21,7 +21,7 @@ export function MainLayout(props: Props) {
           </Toolbar>
         </Container>
       </AppBar>
-      <Container component="main" sx={{ pb: [3, 4, 6, 9] }}>
+      <Container component="main" sx={{ pt: 3, pb: [3, 4, 6, 9] }}>
         {children}
       </Container>
     </>
