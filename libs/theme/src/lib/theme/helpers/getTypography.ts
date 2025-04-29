@@ -6,11 +6,11 @@ export function getTypography({
 }: Theme): ThemeOptions['typography'] {
   return {
     h1: {
-      fontSize: '40px',
-      lineHeight: 1,
+      fontSize: '30px',
+      lineHeight: 1.25,
       fontWeight: typography.fontWeightBold,
       [breakpoints.up('sm')]: {
-        fontSize: '64px',
+        fontSize: '50px',
       },
       [breakpoints.up('md')]: {
         fontSize: '80px',
@@ -28,6 +28,7 @@ export function getTypography({
     body1: {
       fontSize: '14px',
       lineHeight: '20px',
+      fontWeight: typography.fontWeightMedium,
       letterSpacing: '0.04375rem',
     },
   };
