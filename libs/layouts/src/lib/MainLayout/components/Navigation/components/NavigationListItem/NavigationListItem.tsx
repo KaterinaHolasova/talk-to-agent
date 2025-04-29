@@ -10,14 +10,14 @@ type Props = {
 export function NavigationListItem(props: Props) {
   const { closeDrawer, label, to } = props;
 
-  const isActive = useMatch(to);
+  const pathMatch = useMatch(to);
 
   return (
     <ListItem disablePadding key={to}>
       <ListItemButton
         component={NavLink}
         onClick={closeDrawer}
-        selected={!!isActive}
+        selected={!!pathMatch}
         to={to}
       >
         <ListItemText

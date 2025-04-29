@@ -9,13 +9,13 @@ type Props = {
 export function NavigationLink(props: Props) {
   const { label, to } = props;
 
-  const isActive = useMatch(to);
+  const pathMatch = useMatch(to);
 
   return (
     <Link
       component={NavLink}
       to={to}
-      underline={isActive ? 'always' : 'hover'}
+      underline={pathMatch ? 'always' : 'hover'}
       variant="body2"
     >
       {label}
