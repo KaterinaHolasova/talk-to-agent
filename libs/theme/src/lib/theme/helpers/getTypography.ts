@@ -25,7 +25,7 @@ export function getTypography({
       fontWeight: typography.fontWeightBold,
       letterSpacing: '0.04375rem',
     },
-    body1: {
+    body2: {
       fontSize: '14px',
       lineHeight: '20px',
       fontWeight: typography.fontWeightMedium,

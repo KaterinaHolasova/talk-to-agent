@@ -16,7 +16,7 @@ export function NavigationLink(props: Props) {
       component={NavLink}
       to={to}
       underline={isActive ? 'always' : 'hover'}
-      variant="body1"
+      variant="body2"
     >
       {label}
     </Link>

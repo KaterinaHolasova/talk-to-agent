@@ -20,7 +20,10 @@ export function NavigationListItem(props: Props) {
         selected={!!isActive}
         to={to}
       >
-        <ListItemText primary={label} />
+        <ListItemText
+          primary={label}
+          slotProps={{ primary: { variant: 'body2' } }}
+        />
       </ListItemButton>
     </ListItem>
   );
