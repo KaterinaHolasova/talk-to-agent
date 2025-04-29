@@ -46,9 +46,6 @@ export function getComponents({
         containedSizeMedium: {
           padding: spacing(1.25, 2),
         },
-        root: {
-          textTransform: 'none',
-        },
       },
     },
     MuiContainer: {
@@ -166,6 +163,16 @@ export function getComponents({
             paddingTop: spacing(9),
             paddingBottom: spacing(9),
           },
+        },
+      },
+    },
+    MuiTypography: {
+      defaultProps: {
+        variant: 'body2',
+      },
+      styleOverrides: {
+        gutterBottom: {
+          marginBottom: spacing(3),
         },
       },
     },

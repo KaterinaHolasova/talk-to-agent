@@ -24,6 +24,7 @@ export function getTypography({
       lineHeight: '22px',
       fontWeight: typography.fontWeightBold,
       letterSpacing: '0.04375rem',
+      textTransform: 'none',
     },
     body2: {
       fontSize: '14px',
