@@ -1,9 +1,24 @@
 import { type Theme, type ThemeOptions } from '@mui/material';
 
 export function getTypography({
+  breakpoints,
   typography,
 }: Theme): ThemeOptions['typography'] {
   return {
+    h1: {
+      fontSize: '40px',
+      lineHeight: 1,
+      fontWeight: typography.fontWeightBold,
+      [breakpoints.up('sm')]: {
+        fontSize: '64px',
+      },
+      [breakpoints.up('md')]: {
+        fontSize: '80px',
+      },
+      [breakpoints.up('lg')]: {
+        fontSize: '96px',
+      },
+    },
     button: {
       fontSize: '14px',
       lineHeight: '22px',
