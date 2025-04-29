@@ -54,7 +54,19 @@ export function getComponents({
       styleOverrides: {
         maxWidthMd: {
           [breakpoints.up('md')]: {
-            maxWidth: '1000px',
+            maxWidth: '1032px',
+          },
+        },
+        root: {
+          paddingLeft: spacing(3),
+          paddingRight: spacing(3),
+          [breakpoints.up('sm')]: {
+            paddingLeft: spacing(4),
+            paddingRight: spacing(4),
+          },
+          [breakpoints.up('md')]: {
+            paddingLeft: spacing(5),
+            paddingRight: spacing(5),
           },
         },
       },
