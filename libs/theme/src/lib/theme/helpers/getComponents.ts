@@ -28,7 +28,7 @@ export function getComponents({
     MuiBackdrop: {
       styleOverrides: {
         root: {
-          backgroundColor: alpha(palette.primary.contrastText, 0.15),
+          backgroundColor: palette.background.backdrop,
         },
       },
     },
