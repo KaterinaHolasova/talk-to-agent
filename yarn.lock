@@ -4547,12 +4547,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@talk-to-agent/layouts@workspace:libs/layouts":
-  version: 0.0.0-use.local
-  resolution: "@talk-to-agent/layouts@workspace:libs/layouts"
-  languageName: unknown
-  linkType: soft
-
 "@talk-to-agent/source@workspace:.":
   version: 0.0.0-use.local
   resolution: "@talk-to-agent/source@workspace:."
