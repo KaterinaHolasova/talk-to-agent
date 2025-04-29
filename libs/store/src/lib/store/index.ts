@@ -1,1 +1,1 @@
-export { store } from './store';
+export { type RootState, store } from './store';

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { Provider } from 'react-redux';
-import { store } from '../store';
+import { Provider, useSelector } from 'react-redux';
+import { type RootState, store } from '../store';
 
 type Props = {
   children: ReactNode;
@@ -9,5 +9,12 @@ type Props = {
 export function StoreProvider(props: Props) {
   const { children } = props;
 
-  return <Provider store={store}>{children}</Provider>;
+  const dialog = useSelector(({ dialog }: RootState) => dialog.value);
+
+  return (
+    <Provider store={store}>
+      {children}
+      {dialog}
+    </Provider>
+  );
 }
