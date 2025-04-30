@@ -7,7 +7,9 @@ import {
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { closeCurrentDialog } from '@talk-to-agent/store';
-import { Call } from '@talk-to-agent/assets';
+import { Call, FlashingMic } from '@talk-to-agent/assets';
+import { IconLabel, IconLabelSize } from '../../../IconLabel';
+import { AudioWaveform } from '../../../AudioWaveform';
 
 export function CallJessicaDialog() {
   const dispatch = useDispatch();
@@ -31,7 +33,16 @@ export function CallJessicaDialog() {
           <Call />
         </IconButton>
       </Stack>
-      <DialogContent>wavesurfer</DialogContent>
+      <DialogContent>
+        <Stack alignItems="center" gap={2}>
+          <AudioWaveform />
+          <IconLabel
+            Icon={FlashingMic}
+            label="You are speaking"
+            size={IconLabelSize.Small}
+          />
+        </Stack>
+      </DialogContent>
     </Dialog>
   );
 }
