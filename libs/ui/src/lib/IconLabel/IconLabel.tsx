@@ -1,20 +1,32 @@
 import { Box, Stack, Typography } from '@mui/material';
-import { ReactNode } from 'react';
+import { ComponentType } from 'react';
+
+export enum Size {
+  Small = 'small',
+  Medium = 'medium',
+}
 
 type Props = {
-  icon: ReactNode;
+  Icon: ComponentType<{ fontSize?: Size }>;
   label: string;
+  size?: Size;
 };
 
 export function IconLabel(props: Props) {
-  const { icon, label } = props;
+  const { Icon, label, size = Size.Medium } = props;
 
   return (
-    <Stack alignItems="center" direction="row" spacing={1.5}>
+    <Stack
+      alignItems="center"
+      direction="row"
+      spacing={size === Size.Medium ? 1.5 : 1}
+    >
       <Box color="text.primary" display="flex">
-        {icon}
+        <Icon fontSize={size} />
       </Box>
-      <Typography variant="body1">{label}</Typography>
+      <Typography variant={size === Size.Medium ? 'body1' : 'body2'}>
+        {label}
+      </Typography>
     </Stack>
   );
 }

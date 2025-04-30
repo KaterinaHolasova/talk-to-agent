@@ -10,7 +10,7 @@ import {
 import { NavigationLink, NavigationListItem } from './components';
 import { useState } from 'react';
 import { DRAWER_WIDTH, NAVIGATION } from './constants';
-import { RiMenu2Line } from '@remixicon/react';
+import { Menu } from '@talk-to-agent/assets';
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -27,7 +27,7 @@ export function Navigation() {
             edge="start"
             onClick={() => setOpen(true)}
           >
-            <RiMenu2Line />
+            <Menu />
           </IconButton>
           <Drawer open={open} onClose={() => setOpen(false)}>
             <Box role="presentation" sx={{ width: DRAWER_WIDTH }}>

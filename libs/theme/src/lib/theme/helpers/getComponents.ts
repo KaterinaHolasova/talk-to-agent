@@ -209,6 +209,13 @@ export function getComponents({
         },
       },
     },
+    MuiSvgIcon: {
+      styleOverrides: {
+        fontSizeSmall: {
+          fontSize: '16px',
+        },
+      },
+    },
     MuiToolbar: {
       defaultProps: {
         disableGutters: true,
