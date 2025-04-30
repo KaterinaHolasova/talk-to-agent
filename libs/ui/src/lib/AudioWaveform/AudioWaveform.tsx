@@ -1,18 +1,50 @@
 import { Box, useTheme } from '@mui/material';
-import WavesurferPlayer from '@wavesurfer/react';
-import RecordPlugin from 'wavesurfer.js/dist/plugins/record';
+import WavesurferPlayer, { WavesurferProps } from '@wavesurfer/react';
+import { useCallback, useEffect } from 'react';
+import RecordPlugin from 'wavesurfer.js/dist/plugins/record.js';
 
-export function AudioWaveform() {
+export enum Mode {
+  Playback = 'playback',
+  Record = 'record',
+}
+
+type PlaybackMode = {
+  audio: Blob;
+  mode: Mode.Playback;
+};
+
+type RecordMode = {
+  audio?: never;
+  mode: Mode.Record;
+};
+
+type Props = (PlaybackMode | RecordMode) & WavesurferProps;
+
+export function AudioWaveform(props: Props) {
+  const { audio, mode, ...rest } = props;
+
   const recordPlugin = RecordPlugin.create();
   const theme = useTheme();
 
-  const handleInit = async () => {
+  const startRecording = useCallback(async () => {
     const deviceId = await RecordPlugin.getAvailableAudioDevices().then(
       ([device]) => device.deviceId
     );
 
     recordPlugin.startRecording({ deviceId });
-  };
+  }, [recordPlugin]);
+
+  useEffect(() => {
+    if (mode === Mode.Record) {
+      startRecording();
+    }
+
+    return () => {
+      if (mode === Mode.Record) {
+        recordPlugin.stopRecording();
+      }
+    };
+  }, [mode, recordPlugin, startRecording]);
 
   return (
     <Box
@@ -26,11 +58,21 @@ export function AudioWaveform() {
         barGap={2}
         barRadius={2}
         barWidth={2}
+        cursorWidth={0}
         height={32}
         plugins={[recordPlugin]}
-        progressColor="transparent"
-        onInit={handleInit}
-        waveColor={theme.palette.primary.contrastText}
+        progressColor={
+          mode === Mode.Playback
+            ? theme.palette.primary.contrastText
+            : 'transparent'
+        }
+        url={mode === Mode.Playback ? URL.createObjectURL(audio) : undefined}
+        waveColor={
+          mode === Mode.Playback
+            ? theme.palette.primary.dark
+            : theme.palette.primary.contrastText
+        }
+        {...rest}
       />
     </Box>
   );

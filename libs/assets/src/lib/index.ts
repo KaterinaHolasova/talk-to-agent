@@ -4,7 +4,9 @@ export {
   ChartLineUp,
   Coins,
   FlashingMic,
+  FlashingVolumeUp,
   Menu,
   Mic,
   ShieldCheck,
+  VolumeUp,
 } from './icons';

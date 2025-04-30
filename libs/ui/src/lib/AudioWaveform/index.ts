@@ -1,1 +1,1 @@
-export { AudioWaveform } from './AudioWaveform';
+export { AudioWaveform, Mode as AudioWaveformMode } from './AudioWaveform';

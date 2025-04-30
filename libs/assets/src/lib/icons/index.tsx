@@ -1,5 +1,5 @@
 import { createSvgIcon } from '@mui/material/utils';
-import { RiMenu2Line } from '@remixicon/react';
+import { RiMenu2Line, RiVolumeUpLine } from '@remixicon/react';
 import { RiMicLine } from '@remixicon/react';
 import { ReactComponent as CallSvg } from './Call.svg';
 import { ReactComponent as ChartLineUpSvg } from './ChartLineUp.svg';
@@ -13,5 +13,7 @@ export const Coins = createSvgIcon(<CoinsSvg />, 'Coins');
 export const Menu = createSvgIcon(<RiMenu2Line />, 'Menu');
 export const Mic = createSvgIcon(<RiMicLine />, 'Mic');
 export const ShieldCheck = createSvgIcon(<ShieldCheckSvg />, 'ShieldCheck');
+export const VolumeUp = createSvgIcon(<RiVolumeUpLine />, 'VolumeUp');
 
 export const FlashingMic = createFlashingIcon(Mic);
+export const FlashingVolumeUp = createFlashingIcon(VolumeUp);
