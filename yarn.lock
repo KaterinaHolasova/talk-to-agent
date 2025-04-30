@@ -4577,6 +4577,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@talk-to-agent/api@workspace:libs/api":
+  version: 0.0.0-use.local
+  resolution: "@talk-to-agent/api@workspace:libs/api"
+  languageName: unknown
+  linkType: soft
+
 "@talk-to-agent/assets@workspace:libs/assets":
   version: 0.0.0-use.local
   resolution: "@talk-to-agent/assets@workspace:libs/assets"
