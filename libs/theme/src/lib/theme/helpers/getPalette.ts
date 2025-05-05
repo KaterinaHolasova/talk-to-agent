@@ -37,6 +37,7 @@ export function getPalette(): ThemeOptions['palette'] {
     action: {
       active: COLOR_PALETTE.text,
       hover: alpha(COLOR_PALETTE.text, 0.08),
+      disabled: alpha(COLOR_PALETTE.text, 0.2),
     },
   };
 }

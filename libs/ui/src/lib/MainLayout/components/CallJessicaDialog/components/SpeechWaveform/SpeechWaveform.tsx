@@ -20,12 +20,13 @@ export enum Speaker {
 type Props = {
   audio: Blob;
   callStartTime: Dayjs;
+  disabled?: boolean;
   speaker: Speaker;
   time: Dayjs;
 };
 
 export function SpeechWaveform(props: Props) {
-  const { audio, callStartTime, speaker, time } = props;
+  const { audio, callStartTime, disabled, speaker, time } = props;
 
   const waveSurferRef = useRef<WaveSurfer>(null);
   const theme = useTheme();
@@ -34,7 +35,10 @@ export function SpeechWaveform(props: Props) {
     <Card>
       <CardHeader
         action={
-          <IconButton onClick={() => waveSurferRef.current?.playPause()}>
+          <IconButton
+            disabled={disabled}
+            onClick={() => waveSurferRef.current?.playPause()}
+          >
             <RiPlayLine />
           </IconButton>
         }

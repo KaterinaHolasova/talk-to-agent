@@ -97,9 +97,10 @@ export function CallJessicaDialog(props: Props) {
                     <SpeechWaveform
                       audio={audio}
                       key={time.toString()}
+                      callStartTime={startTime}
+                      disabled={!!response}
                       speaker={speaker}
                       time={time}
-                      callStartTime={startTime}
                     />
                   ))}
                 </Stack>
