@@ -12,7 +12,7 @@ import {
   SpeechWaveform,
   SpeechWaveformSpeaker,
 } from './components';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 type Message = {
   audio: Blob;

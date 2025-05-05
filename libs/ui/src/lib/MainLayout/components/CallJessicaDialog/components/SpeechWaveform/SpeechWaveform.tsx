@@ -1,16 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  IconButton,
-  useTheme,
-} from '@mui/material';
-import { RiPlayLine } from '@remixicon/react';
-import WavesurferPlayer from '@wavesurfer/react';
+import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
+import { RiPauseLine, RiPlayLine } from '@remixicon/react';
 import dayjs, { Dayjs } from 'dayjs';
-import { useRef } from 'react';
-import WaveSurfer from 'wavesurfer.js';
 import { SPEAKER_LABEL } from './constants';
+import { useWaveform } from '../../../../../useWaveform';
 
 export enum Speaker {
   Jessica = 'jessica',
@@ -28,18 +20,14 @@ type Props = {
 export function SpeechWaveform(props: Props) {
   const { audio, callStartTime, disabled, speaker, time } = props;
 
-  const waveSurferRef = useRef<WaveSurfer>(null);
-  const theme = useTheme();
+  const { getRootProps, isPlaying, playPause } = useWaveform(audio);
 
   return (
     <Card>
       <CardHeader
         action={
-          <IconButton
-            disabled={disabled}
-            onClick={() => waveSurferRef.current?.playPause()}
-          >
-            <RiPlayLine />
+          <IconButton disabled={disabled} onClick={playPause}>
+            {isPlaying ? <RiPauseLine /> : <RiPlayLine />}
           </IconButton>
         }
         slotProps={{
@@ -55,19 +43,7 @@ export function SpeechWaveform(props: Props) {
         title={SPEAKER_LABEL[speaker]}
       />
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
-        <WavesurferPlayer
-          barGap={2}
-          barRadius={2}
-          barWidth={2}
-          cursorWidth={0}
-          height={24}
-          onInit={(waveSurfer: WaveSurfer) => {
-            waveSurferRef.current = waveSurfer;
-          }}
-          progressColor={theme.palette.text.primary}
-          url={URL.createObjectURL(audio)}
-          waveColor={theme.palette.primary.dark}
-        />
+        <div {...getRootProps()} />
       </CardContent>
     </Card>
   );
