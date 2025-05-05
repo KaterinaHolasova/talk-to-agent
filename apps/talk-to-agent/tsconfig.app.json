@@ -43,13 +43,16 @@
   ],
   "references": [
     {
-      "path": "../../libs/ui/tsconfig.lib.json"
-    },
-    {
       "path": "../../libs/assets/tsconfig.lib.json"
     },
     {
+      "path": "../../libs/store/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/theme/tsconfig.lib.json"
+    },
+    {
+      "path": "../../libs/ui/tsconfig.lib.json"
     }
   ]
 }

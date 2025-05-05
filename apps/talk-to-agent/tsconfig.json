@@ -3,13 +3,16 @@
   "include": [],
   "references": [
     {
-      "path": "../../libs/ui"
-    },
-    {
       "path": "../../libs/assets"
     },
     {
+      "path": "../../libs/store"
+    },
+    {
       "path": "../../libs/theme"
+    },
+    {
+      "path": "../../libs/ui"
     },
     {
       "path": "./tsconfig.app.json"

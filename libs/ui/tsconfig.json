@@ -3,6 +3,15 @@
   "include": [],
   "references": [
     {
+      "path": "../api"
+    },
+    {
+      "path": "../assets"
+    },
+    {
+      "path": "../store"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {
