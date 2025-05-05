@@ -68,6 +68,7 @@
     "@react-router/serve": "^7.2.0",
     "@reduxjs/toolkit": "^2.7.0",
     "@remixicon/react": "^4.6.0",
+    "@ricky0123/vad-react": "^0.0.30",
     "@wavesurfer/react": "^1.0.11",
     "dayjs": "^1.11.13",
     "isbot": "^4.4.0",
