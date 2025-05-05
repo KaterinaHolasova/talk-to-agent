@@ -96,18 +96,36 @@ export function CallJessicaDialog(props: Props) {
                 <Typography gutterBottom variant="h4">
                   Conversation History
                 </Typography>
-                <Stack gap={2}>
-                  {messages.map(({ audio, speaker, time }) => (
-                    <SpeechWaveform
-                      audio={audio}
-                      key={time.toString()}
-                      callStartTime={startTime}
-                      disabled={!!response}
-                      speaker={speaker}
-                      time={time}
-                    />
-                  ))}
-                </Stack>
+                <Box
+                  sx={({ palette, spacing }) => ({
+                    position: 'relative',
+                    mb: -3,
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      zIndex: 5,
+                      bottom: 0,
+                      width: '100%',
+                      height: spacing(3),
+                      backgroundImage: `linear-gradient(transparent, ${palette.background.default})`,
+                    },
+                  })}
+                >
+                  <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
+                    <Stack gap={2}>
+                      {messages.map(({ audio, speaker, time }) => (
+                        <SpeechWaveform
+                          audio={audio}
+                          key={time.toString()}
+                          callStartTime={startTime}
+                          disabled={!!response}
+                          speaker={speaker}
+                          time={time}
+                        />
+                      ))}
+                    </Stack>
+                  </Box>
+                </Box>
               </Box>
             )}
           </Stack>
