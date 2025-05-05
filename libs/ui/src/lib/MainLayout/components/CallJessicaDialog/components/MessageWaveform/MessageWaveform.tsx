@@ -17,7 +17,7 @@ type Props = {
   time: Dayjs;
 };
 
-export function SpeechWaveform(props: Props) {
+export function MessageWaveform(props: Props) {
   const { audio, callStartTime, disabled, speaker, time } = props;
 
   const { getRootProps, isPlaying, playPause } = useWaveform(audio);

@@ -9,14 +9,14 @@ import {
   CallWaveform,
   CallWaveformMode,
   DialogHeader,
-  SpeechWaveform,
-  SpeechWaveformSpeaker,
+  MessageWaveform,
+  MessageWaveformSpeaker,
 } from './components';
 import { useState } from 'react';
 
 type Message = {
   audio: Blob;
-  speaker: SpeechWaveformSpeaker;
+  speaker: MessageWaveformSpeaker;
   time: Dayjs;
 };
 
@@ -57,7 +57,7 @@ export function CallJessicaDialog(props: Props) {
                           ...prev,
                           {
                             audio: response,
-                            speaker: SpeechWaveformSpeaker.Jessica,
+                            speaker: MessageWaveformSpeaker.Jessica,
                             time: dayjs(),
                           },
                         ]);
@@ -78,7 +78,7 @@ export function CallJessicaDialog(props: Props) {
                           ...prev,
                           {
                             audio: record,
-                            speaker: SpeechWaveformSpeaker.You,
+                            speaker: MessageWaveformSpeaker.You,
                             time: dayjs(),
                           },
                         ]);
@@ -114,7 +114,7 @@ export function CallJessicaDialog(props: Props) {
                   <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
                     <Stack gap={2}>
                       {messages.map(({ audio, speaker, time }) => (
-                        <SpeechWaveform
+                        <MessageWaveform
                           audio={audio}
                           key={time.toString()}
                           callStartTime={startTime}

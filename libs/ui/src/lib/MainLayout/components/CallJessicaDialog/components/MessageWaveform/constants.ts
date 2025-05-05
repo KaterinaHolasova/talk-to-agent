@@ -1,4 +1,4 @@
-import { Speaker } from './SpeechWaveform';
+import { Speaker } from './MessageWaveform';
 
 export const SPEAKER_LABEL: Record<Speaker, string> = {
   jessica: 'Jessica',
