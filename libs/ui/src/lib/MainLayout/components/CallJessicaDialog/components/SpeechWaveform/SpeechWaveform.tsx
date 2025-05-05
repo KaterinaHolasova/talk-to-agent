@@ -54,7 +54,7 @@ export function SpeechWaveform(props: Props) {
         sx={{ pt: 1, pb: 0 }}
         title={SPEAKER_LABEL[speaker]}
       />
-      <CardContent sx={{ '&:last-child': { pb: 1 } }}>
+      <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
         <WavesurferPlayer
           barGap={2}
           barRadius={2}

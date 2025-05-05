@@ -53,10 +53,10 @@ export function getComponents({
       styleOverrides: {
         root: {
           padding: spacing(0, 2, 2),
-          '&:first-child': {
+          '&:first-of-type': {
             paddingTop: spacing(2),
           },
-          '&:last-child': {
+          '&:last-of-type': {
             paddingBottom: spacing(2),
           },
         },
@@ -126,7 +126,7 @@ export function getComponents({
       styleOverrides: {
         root: {
           padding: spacing(0, 3, 3),
-          '&:first-child': {
+          '&:first-of-type': {
             paddingTop: spacing(3),
           },
         },
