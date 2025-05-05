@@ -61,7 +61,7 @@ export function CallWaveform(props: Props) {
         waveColor={
           mode === Mode.Playback
             ? theme.palette.primary.dark
-            : theme.palette.primary.contrastText
+            : theme.palette.text.primary
         }
         {...rest}
       />

@@ -125,7 +125,7 @@ export function getComponents({
     MuiDialogContent: {
       styleOverrides: {
         root: {
-          padding: spacing(5, 3),
+          padding: spacing(3),
         },
       },
     },
@@ -261,7 +261,7 @@ export function getComponents({
       },
       styleOverrides: {
         gutterBottom: {
-          marginBottom: spacing(3),
+          marginBottom: '0.3em',
         },
       },
     },

@@ -17,9 +17,7 @@ const COLOR_PALETTE = {
     dark: '#D64D4F',
     contrastText: '#FCFBFC',
   },
-  text: {
-    primary: '#4F1650',
-  },
+  text: '#4F1650',
   background: {
     backdrop: alpha('#1F1B20', 0.15),
     default: '#F9EBFA',
@@ -30,12 +28,15 @@ const COLOR_PALETTE = {
 export function getPalette(): ThemeOptions['palette'] {
   return {
     primary: COLOR_PALETTE.primary,
-    text: COLOR_PALETTE.text,
+    text: {
+      primary: COLOR_PALETTE.text,
+      secondary: COLOR_PALETTE.text,
+    },
     error: COLOR_PALETTE.error,
     background: COLOR_PALETTE.background,
     action: {
-      active: COLOR_PALETTE.text.primary,
-      hover: alpha(COLOR_PALETTE.text.primary, 0.08),
+      active: COLOR_PALETTE.text,
+      hover: alpha(COLOR_PALETTE.text, 0.08),
     },
   };
 }
