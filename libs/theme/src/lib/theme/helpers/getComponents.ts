@@ -49,6 +49,19 @@ export function getComponents({
         },
       },
     },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: spacing(0, 2, 2),
+          '&:first-child': {
+            paddingTop: spacing(2),
+          },
+          '&:last-child': {
+            paddingBottom: spacing(2),
+          },
+        },
+      },
+    },
     MuiContainer: {
       defaultProps: {
         maxWidth: 'md',
@@ -100,6 +113,9 @@ export function getComponents({
         fullWidth: true,
       },
       styleOverrides: {
+        paper: {
+          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
+        },
         paperWidthXs: {
           maxWidth: '280px',
           minHeight: '280px',
@@ -110,6 +126,13 @@ export function getComponents({
       styleOverrides: {
         root: {
           padding: spacing(5, 3),
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
         },
       },
     },
@@ -199,13 +222,6 @@ export function getComponents({
             height: '2px',
             background: palette.primary.main,
           },
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
         },
       },
     },
