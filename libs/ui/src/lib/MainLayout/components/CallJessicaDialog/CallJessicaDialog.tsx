@@ -4,9 +4,10 @@ import { closeCurrentDialog } from '@talk-to-agent/store';
 import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
-import { CallWaveform, CallWaveformMode } from '../../../CallWaveform';
 import dayjs, { Dayjs } from 'dayjs';
 import {
+  CallWaveform,
+  CallWaveformMode,
   DialogHeader,
   SpeechWaveform,
   SpeechWaveformSpeaker,
