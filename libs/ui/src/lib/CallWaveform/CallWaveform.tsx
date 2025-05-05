@@ -1,7 +1,7 @@
 import { Box, useTheme } from '@mui/material';
 import WavesurferPlayer, { WavesurferProps } from '@wavesurfer/react';
-import { useCallback, useEffect } from 'react';
-import RecordPlugin from 'wavesurfer.js/dist/plugins/record.js';
+import { useSpeechRecording } from './hooks';
+import { useEffect } from 'react';
 
 export enum Mode {
   Playback = 'playback',
@@ -11,40 +11,31 @@ export enum Mode {
 type PlaybackMode = {
   audio: Blob;
   mode: Mode.Playback;
+  onRecordEnd?: never;
 };
 
 type RecordMode = {
   audio?: never;
   mode: Mode.Record;
+  onRecordEnd?: (blob: Blob) => void;
 };
 
 type Props = (PlaybackMode | RecordMode) & WavesurferProps;
 
 export function CallWaveform(props: Props) {
-  const { audio, mode, ...rest } = props;
+  const { audio, mode, onRecordEnd, ...rest } = props;
 
-  const recordPlugin = RecordPlugin.create();
+  const { pause, recordPlugin, start } = useSpeechRecording(onRecordEnd);
   const theme = useTheme();
-
-  const startRecording = useCallback(async () => {
-    const deviceId = await RecordPlugin.getAvailableAudioDevices().then(
-      ([device]) => device.deviceId
-    );
-
-    recordPlugin.startRecording({ deviceId });
-  }, [recordPlugin]);
 
   useEffect(() => {
     if (mode === Mode.Record) {
-      startRecording();
+      start();
+      return () => pause();
     }
 
-    return () => {
-      if (mode === Mode.Record) {
-        recordPlugin.stopRecording();
-      }
-    };
-  }, [mode, recordPlugin, startRecording]);
+    return;
+  }, [mode, pause, start]);
 
   return (
     <Box

@@ -14,7 +14,9 @@ export function CallJessicaDialog() {
   const startTime = dayjs();
 
   const [response, setResponse] = useState<Blob | null>(null);
-  useAudioMessages({ onMessage: setResponse });
+  const { sendMessage } = useAudioMessages({
+    onMessage: setResponse,
+  });
 
   return (
     <Dialog
@@ -34,7 +36,7 @@ export function CallJessicaDialog() {
                   mode: CallWaveformMode.Playback,
                   onFinish: () => setResponse(null),
                 }
-              : { mode: CallWaveformMode.Record })}
+              : { mode: CallWaveformMode.Record, onRecordEnd: sendMessage })}
           />
           <IconLabel
             Icon={response ? FlashingVolumeUp : FlashingMic}
