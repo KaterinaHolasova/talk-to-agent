@@ -5,12 +5,18 @@ import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
 import { CallWaveform, CallWaveformMode } from '../../../CallWaveform';
-import { Dayjs } from 'dayjs';
-import { DialogHeader } from './components';
+import dayjs, { Dayjs } from 'dayjs';
+import {
+  DialogHeader,
+  SpeechWaveform,
+  SpeechWaveformSpeaker,
+} from './components';
 import { useCallback, useState } from 'react';
 
 type Message = {
   audio: Blob;
+  speaker: SpeechWaveformSpeaker;
+  time: Dayjs;
 };
 
 type Props = {
@@ -28,7 +34,14 @@ export function CallJessicaDialog(props: Props) {
   const { sendMessage } = useAudioMessages({
     onMessage: useCallback((message: Blob) => {
       setResponse(message);
-      setMessages((prev) => [...prev, { audio: message }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          audio: message,
+          speaker: SpeechWaveformSpeaker.Jessica,
+          time: dayjs(),
+        },
+      ]);
     }, []),
   });
 
@@ -43,7 +56,7 @@ export function CallJessicaDialog(props: Props) {
       <DialogContent>
         {messages.length > 0 && (
           <>
-            <Box mb={8}>
+            <Box mb={6}>
               <Stack alignItems="center" gap={2}>
                 <CallWaveform
                   {...(response
@@ -70,6 +83,17 @@ export function CallJessicaDialog(props: Props) {
             <Typography gutterBottom variant="h4">
               Conversation History
             </Typography>
+            <Stack gap={2}>
+              {messages.map(({ audio, speaker, time }) => (
+                <SpeechWaveform
+                  audio={audio}
+                  key={time.toString()}
+                  speaker={speaker}
+                  time={time}
+                  callStartTime={startTime}
+                />
+              ))}
+            </Stack>
           </>
         )}
       </DialogContent>
