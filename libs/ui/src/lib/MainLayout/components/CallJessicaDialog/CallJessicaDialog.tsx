@@ -5,7 +5,7 @@ import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
 import { CallWaveform, CallWaveformMode } from '../../../CallWaveform';
-import dayjs from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { DialogHeader } from './components';
 import { useCallback, useState } from 'react';
 
@@ -13,9 +13,14 @@ type Message = {
   audio: Blob;
 };
 
-export function CallJessicaDialog() {
+type Props = {
+  startTime: Dayjs;
+};
+
+export function CallJessicaDialog(props: Props) {
+  const { startTime } = props;
+
   const dispatch = useDispatch();
-  const startTime = dayjs();
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [response, setResponse] = useState<Blob | null>(null);

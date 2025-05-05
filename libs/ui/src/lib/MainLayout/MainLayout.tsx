@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { CallJessicaDialog, Navigation } from './components';
 import { useDispatch } from 'react-redux';
 import { openDialog } from '@talk-to-agent/store';
+import dayjs from 'dayjs';
 
 type Props = {
   children: ReactNode;
@@ -21,7 +22,11 @@ export function MainLayout(props: Props) {
             <Box flexGrow={1}>
               <Navigation />
             </Box>
-            <Button onClick={() => dispatch(openDialog(<CallJessicaDialog />))}>
+            <Button
+              onClick={() =>
+                dispatch(openDialog(<CallJessicaDialog startTime={dayjs()} />))
+              }
+            >
               Call Jessica
             </Button>
           </Toolbar>
