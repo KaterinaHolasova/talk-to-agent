@@ -33,17 +33,7 @@ export function CallJessicaDialog(props: Props) {
   const [response, setResponse] = useState<Blob | null>(null);
 
   const { sendMessage } = useAudioMessages({
-    onMessage: useCallback((message: Blob) => {
-      setResponse(message);
-      setMessages((prev) => [
-        ...prev,
-        {
-          audio: message,
-          speaker: SpeechWaveformSpeaker.Jessica,
-          time: dayjs(),
-        },
-      ]);
-    }, []),
+    onMessage: setResponse,
   });
 
   return (
@@ -54,48 +44,68 @@ export function CallJessicaDialog(props: Props) {
       open
     >
       <DialogHeader startTime={startTime} />
-      <DialogContent>
-        {messages.length > 0 && (
-          <>
-            <Box mb={6}>
-              <Stack alignItems="center" gap={2}>
-                <CallWaveform
-                  {...(response
-                    ? {
-                        audio: response,
-                        autoplay: true,
-                        mode: CallWaveformMode.Playback,
-                        onFinish: () => setResponse(null),
-                      }
-                    : {
-                        mode: CallWaveformMode.Record,
-                        onRecordEnd: sendMessage,
-                      })}
-                />
-                <IconLabel
-                  Icon={response ? FlashingVolumeUp : FlashingMic}
-                  label={
-                    response ? 'Jessica speaking...' : 'You are speaking...'
-                  }
-                  size={IconLabelSize.Small}
-                />
-              </Stack>
-            </Box>
-            <Typography gutterBottom variant="h4">
-              Conversation History
-            </Typography>
-            <Stack gap={2}>
-              {messages.map(({ audio, speaker, time }) => (
-                <SpeechWaveform
-                  audio={audio}
-                  key={time.toString()}
-                  speaker={speaker}
-                  time={time}
-                  callStartTime={startTime}
-                />
-              ))}
+      <DialogContent sx={{ display: 'flex' }}>
+        {(response || messages.length > 0) && (
+          <Stack flexGrow={1} gap={3} justifyContent="center">
+            <Stack alignItems="center" gap={2} py={3}>
+              <CallWaveform
+                {...(response
+                  ? {
+                      audio: response,
+                      autoplay: true,
+                      mode: CallWaveformMode.Playback,
+                      onFinish: () => {
+                        setMessages((prev) => [
+                          ...prev,
+                          {
+                            audio: response,
+                            speaker: SpeechWaveformSpeaker.Jessica,
+                            time: dayjs(),
+                          },
+                        ]);
+                        setResponse(null);
+                      },
+                    }
+                  : {
+                      mode: CallWaveformMode.Record,
+                      onRecordEnd: (record) => {
+                        sendMessage(record);
+                        setMessages((prev) => [
+                          ...prev,
+                          {
+                            audio: record,
+                            speaker: SpeechWaveformSpeaker.You,
+                            time: dayjs(),
+                          },
+                        ]);
+                      },
+                    })}
+              />
+              <IconLabel
+                Icon={response ? FlashingVolumeUp : FlashingMic}
+                label={response ? 'Jessica speaking...' : 'You are speaking...'}
+                size={IconLabelSize.Small}
+              />
             </Stack>
-          </>
+            {messages.length > 0 && (
+              <Box>
+                <Typography gutterBottom variant="h4">
+                  Conversation History
+                </Typography>
+                <Stack gap={2}>
+                  {messages.map(({ audio, speaker, time }) => (
+                    <SpeechWaveform
+                      audio={audio}
+                      key={time.toString()}
+                      speaker={speaker}
+                      time={time}
+                      callStartTime={startTime}
+                    />
+                  ))}
+                </Stack>
+              </Box>
+            )}
+          </Stack>
         )}
       </DialogContent>
     </Dialog>

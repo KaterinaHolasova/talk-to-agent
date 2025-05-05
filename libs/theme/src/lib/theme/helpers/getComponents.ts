@@ -125,7 +125,10 @@ export function getComponents({
     MuiDialogContent: {
       styleOverrides: {
         root: {
-          padding: spacing(3),
+          padding: spacing(0, 3, 3),
+          '&:first-child': {
+            paddingTop: spacing(3),
+          },
         },
       },
     },
