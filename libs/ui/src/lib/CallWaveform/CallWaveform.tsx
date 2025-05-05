@@ -20,7 +20,7 @@ type RecordMode = {
 
 type Props = (PlaybackMode | RecordMode) & WavesurferProps;
 
-export function AudioWaveform(props: Props) {
+export function CallWaveform(props: Props) {
   const { audio, mode, ...rest } = props;
 
   const recordPlugin = RecordPlugin.create();

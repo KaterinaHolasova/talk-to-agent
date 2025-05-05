@@ -4,7 +4,7 @@ import { closeCurrentDialog } from '@talk-to-agent/store';
 import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
-import { AudioWaveform, AudioWaveformMode } from '../../../AudioWaveform';
+import { CallWaveform, CallWaveformMode } from '../../../CallWaveform';
 import dayjs from 'dayjs';
 import { DialogHeader } from './components';
 import { useState } from 'react';
@@ -26,15 +26,15 @@ export function CallJessicaDialog() {
       <DialogHeader startTime={startTime} />
       <DialogContent>
         <Stack alignItems="center" gap={2}>
-          <AudioWaveform
+          <CallWaveform
             {...(response
               ? {
                   audio: response,
                   autoplay: true,
-                  mode: AudioWaveformMode.Playback,
+                  mode: CallWaveformMode.Playback,
                   onFinish: () => setResponse(null),
                 }
-              : { mode: AudioWaveformMode.Record })}
+              : { mode: CallWaveformMode.Record })}
           />
           <IconLabel
             Icon={response ? FlashingVolumeUp : FlashingMic}
