@@ -26,7 +26,7 @@ export function useAudioMessages(options: Options): Return {
     return () => {
       socket.close();
     };
-  }, []);
+  }, [options]);
 
   const sendMessage = (message: Blob) => {
     if (socketRef.current) {
