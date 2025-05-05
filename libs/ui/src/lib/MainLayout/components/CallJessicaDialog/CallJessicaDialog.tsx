@@ -38,7 +38,7 @@ export function CallJessicaDialog() {
       <DialogContent>
         {messages.length > 0 && (
           <>
-            <Box mb={3}>
+            <Box mb={8}>
               <Stack alignItems="center" gap={2}>
                 <CallWaveform
                   {...(response

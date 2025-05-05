@@ -7,6 +7,8 @@ export function useSpeechRecording(onEnd?: (blob: Blob) => void) {
 
   const micVAD = useMicVAD({
     onSpeechEnd: () => recordPlugin.stopRecording(),
+    startOnLoad: false,
+    userSpeakingThreshold: 1,
   });
 
   const pause = useCallback(() => {
