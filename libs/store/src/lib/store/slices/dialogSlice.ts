@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface DialogState {
-  value: ReactElement | undefined;
+  component: ReactElement | undefined;
 }
 
 const initialState: DialogState = {
-  value: undefined,
+  component: undefined,
 };
 
 export const dialogSlice = createSlice({
@@ -15,10 +15,10 @@ export const dialogSlice = createSlice({
   initialState,
   reducers: {
     closeCurrentDialog: (state) => {
-      state.value = undefined;
+      state.component = undefined;
     },
     openDialog: (state, action: PayloadAction<ReactElement>) => {
-      state.value = action.payload;
+      state.component = action.payload;
     },
   },
 });
