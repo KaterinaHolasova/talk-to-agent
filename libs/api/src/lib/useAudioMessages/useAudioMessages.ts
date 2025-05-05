@@ -11,6 +11,8 @@ type Return = {
 };
 
 export function useAudioMessages(options: Options): Return {
+  const { onMessage } = options;
+
   const socketRef = useRef<ReconnectingWebSocket>(null);
   const [messages, setMessages] = useState<Blob[]>([]);
 
@@ -19,14 +21,14 @@ export function useAudioMessages(options: Options): Return {
     socketRef.current = socket;
 
     socket.addEventListener('message', (event: MessageEvent) => {
-      options?.onMessage?.(event.data);
+      onMessage?.(event.data);
       setMessages((prev) => [...prev, event.data]);
     });
 
     return () => {
       socket.close();
     };
-  }, [options]);
+  }, [onMessage]);
 
   const sendMessage = (message: Blob) => {
     if (socketRef.current) {
