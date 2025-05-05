@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 type Options = {
@@ -6,7 +6,6 @@ type Options = {
 };
 
 type Return = {
-  messages: Blob[];
   sendMessage: (message: Blob) => void;
 };
 
@@ -14,7 +13,6 @@ export function useAudioMessages(options: Options): Return {
   const { onMessage } = options;
 
   const socketRef = useRef<ReconnectingWebSocket>(null);
-  const [messages, setMessages] = useState<Blob[]>([]);
 
   useEffect(() => {
     const socket = new ReconnectingWebSocket('ws://localhost:8080');
@@ -22,7 +20,6 @@ export function useAudioMessages(options: Options): Return {
 
     socket.addEventListener('message', (event: MessageEvent) => {
       onMessage?.(event.data);
-      setMessages((prev) => [...prev, event.data]);
     });
 
     return () => {
@@ -38,5 +35,5 @@ export function useAudioMessages(options: Options): Return {
     }
   };
 
-  return { messages, sendMessage };
+  return { sendMessage };
 }
