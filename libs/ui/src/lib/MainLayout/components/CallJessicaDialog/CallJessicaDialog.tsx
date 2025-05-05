@@ -9,7 +9,7 @@ import {
   CallWaveform,
   CallWaveformMode,
   DialogHeader,
-  MessageWaveform,
+  MessageList,
   MessageWaveformSpeaker,
 } from './components';
 import { useState } from 'react';
@@ -96,36 +96,11 @@ export function CallJessicaDialog(props: Props) {
                 <Typography gutterBottom variant="h4">
                   Conversation History
                 </Typography>
-                <Box
-                  sx={({ palette, spacing }) => ({
-                    position: 'relative',
-                    mb: -3,
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      zIndex: 5,
-                      bottom: 0,
-                      width: '100%',
-                      height: spacing(3),
-                      backgroundImage: `linear-gradient(transparent, ${palette.background.default})`,
-                    },
-                  })}
-                >
-                  <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
-                    <Stack gap={2}>
-                      {messages.map(({ audio, speaker, time }) => (
-                        <MessageWaveform
-                          audio={audio}
-                          key={time.toString()}
-                          callStartTime={startTime}
-                          disabled={!!response}
-                          speaker={speaker}
-                          time={time}
-                        />
-                      ))}
-                    </Stack>
-                  </Box>
-                </Box>
+                <MessageList
+                  callStartTime={startTime}
+                  disabled={!!response}
+                  messages={messages}
+                />
               </Box>
             )}
           </Stack>
