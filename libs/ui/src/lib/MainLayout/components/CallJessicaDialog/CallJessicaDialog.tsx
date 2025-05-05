@@ -49,12 +49,10 @@ export function CallJessicaDialog(props: Props) {
           <Stack flexGrow={1} gap={3} justifyContent="center">
             <Stack alignItems="center" gap={2} py={3}>
               <CallWaveform
-                {...(response
-                  ? {
-                      audio: response,
-                      autoplay: true,
-                      mode: CallWaveformMode.Playback,
-                      onFinish: () => {
+                autoplay={!!response}
+                onFinish={
+                  response
+                    ? () => {
                         setMessages((prev) => [
                           ...prev,
                           {
@@ -64,7 +62,13 @@ export function CallJessicaDialog(props: Props) {
                           },
                         ]);
                         setResponse(null);
-                      },
+                      }
+                    : undefined
+                }
+                {...(response
+                  ? {
+                      audio: response,
+                      mode: CallWaveformMode.Playback,
                     }
                   : {
                       mode: CallWaveformMode.Record,
