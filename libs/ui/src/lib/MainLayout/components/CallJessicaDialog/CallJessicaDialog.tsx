@@ -30,10 +30,10 @@ export function CallJessicaDialog(props: Props) {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState<Message[]>([]);
-  const [response, setResponse] = useState<Blob | null>(null);
+  const [playingMessage, setPlayingMessage] = useState<Blob | null>(null);
 
   const { sendMessage } = useAudioMessages({
-    onMessage: setResponse,
+    onMessage: setPlayingMessage,
   });
 
   return (
@@ -45,29 +45,29 @@ export function CallJessicaDialog(props: Props) {
     >
       <DialogHeader startTime={startTime} />
       <DialogContent sx={{ display: 'flex' }}>
-        {(response || messages.length > 0) && (
+        {(messages.length > 0 || playingMessage) && (
           <Stack flexGrow={1} gap={3} justifyContent="center">
             <Stack alignItems="center" gap={2} py={3}>
               <CallWaveform
-                autoplay={!!response}
+                autoplay={!!playingMessage}
                 onFinish={
-                  response
+                  playingMessage
                     ? () => {
                         setMessages((prev) => [
                           ...prev,
                           {
-                            audio: response,
+                            audio: playingMessage,
                             speaker: MessageWaveformSpeaker.Jessica,
                             time: dayjs(),
                           },
                         ]);
-                        setResponse(null);
+                        setPlayingMessage(null);
                       }
                     : undefined
                 }
-                {...(response
+                {...(playingMessage
                   ? {
-                      audio: response,
+                      audio: playingMessage,
                       mode: CallWaveformMode.Playback,
                     }
                   : {
@@ -86,8 +86,10 @@ export function CallJessicaDialog(props: Props) {
                     })}
               />
               <IconLabel
-                Icon={response ? FlashingVolumeUp : FlashingMic}
-                label={response ? 'Jessica speaking...' : 'You are speaking...'}
+                Icon={playingMessage ? FlashingVolumeUp : FlashingMic}
+                label={
+                  playingMessage ? 'Jessica speaking...' : 'You are speaking...'
+                }
                 size={IconLabelSize.Small}
               />
             </Stack>
@@ -98,7 +100,7 @@ export function CallJessicaDialog(props: Props) {
                 </Typography>
                 <MessageList
                   callStartTime={startTime}
-                  disabled={!!response}
+                  disabled={!!playingMessage}
                   messages={messages}
                 />
               </Box>
