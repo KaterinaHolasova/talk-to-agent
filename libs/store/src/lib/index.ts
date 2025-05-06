@@ -1,8 +1,6 @@
 export {
   closeCurrentDialog,
   openDialog,
-  pauseCall,
-  resumeCall,
   type RootState,
   startCall,
   updateActiveResponse,

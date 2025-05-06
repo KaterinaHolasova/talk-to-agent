@@ -1,8 +1,6 @@
 export {
   closeCurrentDialog,
   openDialog,
-  pauseCall,
-  resumeCall,
   startCall,
   updateActiveResponse,
 } from './slices';

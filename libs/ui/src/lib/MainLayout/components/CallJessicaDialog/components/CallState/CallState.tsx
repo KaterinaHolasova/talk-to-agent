@@ -11,12 +11,12 @@ type Props = {
 export function CallState(props: Props) {
   const { dialing } = props;
 
-  const { activeResponse, paused } = useSelector(({ call }: RootState) => call);
+  const activeResponse = useSelector(
+    ({ call }: RootState) => call.activeResponse
+  );
 
   const getIcon = () => {
     if (dialing) {
-      return null;
-    } else if (paused) {
       return null;
     } else if (activeResponse) {
       return FlashingVolumeUp;
@@ -28,8 +28,6 @@ export function CallState(props: Props) {
   const getLabel = () => {
     if (dialing) {
       return 'Dialing...';
-    } else if (paused) {
-      return 'Paused';
     } else if (activeResponse) {
       return 'Jessica speaking...';
     }

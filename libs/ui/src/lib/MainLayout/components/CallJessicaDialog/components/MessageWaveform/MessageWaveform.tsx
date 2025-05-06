@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { SPEAKER_LABEL } from './constants';
 import { useDispatch, useSelector } from 'react-redux';
-import { pauseCall, resumeCall, RootState } from '@talk-to-agent/store';
+import { RootState } from '@talk-to-agent/store';
 import { Waveform } from '../../../../../Waveform';
 import { useState } from 'react';
 import { Pause, Play } from '@talk-to-agent/assets';
@@ -21,7 +21,6 @@ type Props = {
 export function MessageWaveform(props: Props) {
   const { audio, speaker, time } = props;
 
-  const dispatch = useDispatch();
   const call = useSelector(({ call }: RootState) => call);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -31,12 +30,7 @@ export function MessageWaveform(props: Props) {
       .duration(Math.abs(call.startTime.diff(time, 's')), 's')
       .format('mm:ss');
 
-  const playPause = () =>
-    setIsPlaying((prev) => {
-      dispatch(prev ? resumeCall() : pauseCall());
-
-      return !prev;
-    });
+  const playPause = () => setIsPlaying((prev) => !prev);
 
   return (
     <Card>

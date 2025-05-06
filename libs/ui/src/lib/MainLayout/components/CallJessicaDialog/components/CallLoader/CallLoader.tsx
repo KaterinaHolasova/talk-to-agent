@@ -4,8 +4,6 @@ import { RootState } from '@talk-to-agent/store';
 import { useSelector } from 'react-redux';
 
 export function CallLoader() {
-  const paused = useSelector(({ call }: RootState) => call.paused);
-
   return (
     <Box
       sx={({ palette, transitions }) => ({
@@ -43,7 +41,7 @@ export function CallLoader() {
         },
       })}
     >
-      {paused ? <Pause /> : <Phone />}
+      <Phone />
     </Box>
   );
 }

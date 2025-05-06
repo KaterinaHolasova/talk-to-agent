@@ -27,7 +27,9 @@ export function CallJessicaDialog() {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState<Message[]>([]);
-  const { activeResponse, paused } = useSelector(({ call }: RootState) => call);
+  const activeResponse = useSelector(
+    ({ call }: RootState) => call.activeResponse
+  );
 
   const { sendMessage } = useAudioMessages({
     onMessage: useCallback(
@@ -51,7 +53,7 @@ export function CallJessicaDialog() {
       <DialogContent sx={{ display: 'flex' }}>
         <Stack flexGrow={1} gap={3} justifyContent="center">
           <Stack alignItems="center" gap={2} py={3}>
-            {!paused && (messages.length > 0 || activeResponse) ? (
+            {messages.length > 0 || activeResponse ? (
               <CallWaveform
                 onFinish={() => {
                   if (activeResponse) {
