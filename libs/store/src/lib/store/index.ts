@@ -1,2 +1,7 @@
-export { closeCurrentDialog, openDialog, updateActiveResponse } from './slices';
+export {
+  closeCurrentDialog,
+  openDialog,
+  startCall,
+  updateActiveResponse,
+} from './slices';
 export { type RootState, store } from './store';

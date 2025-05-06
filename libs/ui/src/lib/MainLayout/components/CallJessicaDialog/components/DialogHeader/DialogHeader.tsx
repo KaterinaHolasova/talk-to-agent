@@ -1,21 +1,18 @@
 import { DialogTitle, IconButton, Stack, Typography } from '@mui/material';
-import dayjs, { Dayjs } from 'dayjs';
-import { useDispatch } from 'react-redux';
-import { closeCurrentDialog } from '@talk-to-agent/store';
+import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeCurrentDialog, RootState } from '@talk-to-agent/store';
 import { useEffect, useState } from 'react';
 import { Call } from '@talk-to-agent/assets';
 
-type Props = {
-  startTime: Dayjs;
-};
-
-export function DialogHeader(props: Props) {
-  const { startTime } = props;
-
+export function DialogHeader() {
   const dispatch = useDispatch();
+  const startTime = useSelector(({ call }: RootState) => call.startTime);
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
+    if (!startTime) return;
+
     const interval = setInterval(
       () => setSeconds(Math.abs(startTime.diff(dayjs(), 's'))),
       1000

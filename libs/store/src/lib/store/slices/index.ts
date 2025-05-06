@@ -1,4 +1,8 @@
-export { default as callReducer, updateActiveResponse } from './callSlice';
+export {
+  default as callReducer,
+  startCall,
+  updateActiveResponse,
+} from './callSlice';
 export {
   closeCurrentDialog,
   default as dialogReducer,

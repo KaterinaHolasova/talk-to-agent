@@ -23,13 +23,7 @@ type Message = {
   time: Dayjs;
 };
 
-type Props = {
-  startTime: Dayjs;
-};
-
-export function CallJessicaDialog(props: Props) {
-  const { startTime } = props;
-
+export function CallJessicaDialog() {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -51,7 +45,7 @@ export function CallJessicaDialog(props: Props) {
       onClose={() => dispatch(closeCurrentDialog())}
       open
     >
-      <DialogHeader startTime={startTime} />
+      <DialogHeader />
       <DialogContent sx={{ display: 'flex' }}>
         {(messages.length > 0 || activeResponse) && (
           <Stack flexGrow={1} gap={3} justifyContent="center">
@@ -95,7 +89,7 @@ export function CallJessicaDialog(props: Props) {
                 <Typography gutterBottom variant="h4">
                   Conversation History
                 </Typography>
-                <MessageList callStartTime={startTime} messages={messages} />
+                <MessageList messages={messages} />
               </Box>
             )}
           </Stack>

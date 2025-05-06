@@ -13,24 +13,27 @@ export enum Speaker {
 
 type Props = {
   audio: Blob;
-  callStartTime: Dayjs;
   speaker: Speaker;
   time: Dayjs;
 };
 
 export function MessageWaveform(props: Props) {
-  const { audio, callStartTime, speaker, time } = props;
+  const { audio, speaker, time } = props;
 
-  const activeResponse = useSelector(
-    ({ call }: RootState) => call.activeResponse
-  );
+  const call = useSelector(({ call }: RootState) => call);
   const { getRootProps, isPlaying, playPause } = useWaveform(audio);
+
+  const formattedTime =
+    call.startTime &&
+    dayjs
+      .duration(Math.abs(call.startTime.diff(time, 's')), 's')
+      .format('mm:ss');
 
   return (
     <Card>
       <CardHeader
         action={
-          <IconButton disabled={!!activeResponse} onClick={playPause}>
+          <IconButton disabled={!!call.activeResponse} onClick={playPause}>
             {isPlaying ? <RiPauseLine /> : <RiPlayLine />}
           </IconButton>
         }
@@ -40,9 +43,7 @@ export function MessageWaveform(props: Props) {
           },
           subheader: { variant: 'body2' },
         }}
-        subheader={dayjs
-          .duration(Math.abs(callStartTime.diff(time, 's')), 's')
-          .format('mm:ss')}
+        subheader={formattedTime}
         sx={{ pt: 1, pb: 0 }}
         title={SPEAKER_LABEL[speaker]}
       />

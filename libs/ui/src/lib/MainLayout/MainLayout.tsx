@@ -2,7 +2,7 @@ import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import { ReactNode } from 'react';
 import { CallJessicaDialog, Navigation } from './components';
 import { useDispatch } from 'react-redux';
-import { openDialog } from '@talk-to-agent/store';
+import { openDialog, startCall } from '@talk-to-agent/store';
 import dayjs from 'dayjs';
 
 type Props = {
@@ -14,6 +14,11 @@ export function MainLayout(props: Props) {
 
   const dispatch = useDispatch();
 
+  const handleCallJessica = () => {
+    dispatch(startCall(dayjs()));
+    dispatch(openDialog(<CallJessicaDialog />));
+  };
+
   return (
     <>
       <AppBar>
@@ -22,13 +27,7 @@ export function MainLayout(props: Props) {
             <Box flexGrow={1}>
               <Navigation />
             </Box>
-            <Button
-              onClick={() =>
-                dispatch(openDialog(<CallJessicaDialog startTime={dayjs()} />))
-              }
-            >
-              Call Jessica
-            </Button>
+            <Button onClick={handleCallJessica}>Call Jessica</Button>
           </Toolbar>
         </Container>
       </AppBar>

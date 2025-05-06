@@ -9,11 +9,10 @@ type Message = {
 };
 
 type Props = {
-  callStartTime: Dayjs;
   messages: Message[];
 };
 export function MessageList(props: Props) {
-  const { callStartTime, messages } = props;
+  const { messages } = props;
 
   return (
     <Box
@@ -37,7 +36,6 @@ export function MessageList(props: Props) {
             <MessageWaveform
               audio={audio}
               key={time.toString()}
-              callStartTime={callStartTime}
               speaker={speaker}
               time={time}
             />
