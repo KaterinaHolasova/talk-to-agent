@@ -1,1 +1,1 @@
-export { CallWaveform, Mode as CallWaveformMode } from './CallWaveform';
+export { CallWaveform } from './CallWaveform';

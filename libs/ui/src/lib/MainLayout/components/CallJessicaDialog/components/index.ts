@@ -1,4 +1,4 @@
-export { CallWaveform, CallWaveformMode } from './CallWaveform';
+export { CallWaveform } from './CallWaveform';
 export { DialogHeader } from './DialogHeader';
 export { MessageList } from './MessageList';
 export { MessageWaveform, MessageWaveformSpeaker } from './MessageWaveform';

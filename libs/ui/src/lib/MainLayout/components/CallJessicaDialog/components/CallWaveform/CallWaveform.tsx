@@ -2,40 +2,31 @@ import { Box, useTheme } from '@mui/material';
 import WavesurferPlayer, { WavesurferProps } from '@wavesurfer/react';
 import { useSpeechRecording } from './hooks';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@talk-to-agent/store';
 
-export enum Mode {
-  Playback = 'playback',
-  Record = 'record',
-}
-
-type PlaybackMode = {
-  audio: Blob;
-  mode: Mode.Playback;
-  onRecordEnd?: never;
-};
-
-type RecordMode = {
-  audio?: never;
-  mode: Mode.Record;
+type Props = {
   onRecordEnd?: (blob: Blob) => void;
-};
-
-type Props = (PlaybackMode | RecordMode) & WavesurferProps;
+} & WavesurferProps;
 
 export function CallWaveform(props: Props) {
-  const { audio, mode, onRecordEnd, ...rest } = props;
+  const { onRecordEnd, ...rest } = props;
+
+  const activeResponse = useSelector(
+    ({ call }: RootState) => call.activeResponse
+  );
 
   const { pause, recordPlugin, start } = useSpeechRecording(onRecordEnd);
   const theme = useTheme();
 
   useEffect(() => {
-    if (mode === Mode.Record) {
+    if (!activeResponse) {
       start();
       return () => pause();
     }
 
     return;
-  }, [mode, pause, start]);
+  }, [activeResponse, pause, start]);
 
   return (
     <Box
@@ -46,6 +37,7 @@ export function CallWaveform(props: Props) {
       width={48}
     >
       <WavesurferPlayer
+        autoplay
         barGap={2}
         barRadius={2}
         barWidth={2}
@@ -53,13 +45,11 @@ export function CallWaveform(props: Props) {
         height={32}
         plugins={[recordPlugin]}
         progressColor={
-          mode === Mode.Playback
-            ? theme.palette.primary.contrastText
-            : 'transparent'
+          activeResponse ? theme.palette.primary.contrastText : 'transparent'
         }
-        url={mode === Mode.Playback ? URL.createObjectURL(audio) : undefined}
+        url={activeResponse ? URL.createObjectURL(activeResponse) : undefined}
         waveColor={
-          mode === Mode.Playback
+          activeResponse
             ? theme.palette.primary.dark
             : theme.palette.text.primary
         }

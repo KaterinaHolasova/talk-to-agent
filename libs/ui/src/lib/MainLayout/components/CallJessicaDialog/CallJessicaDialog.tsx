@@ -1,18 +1,21 @@
 import { Box, Dialog, DialogContent, Stack, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { closeCurrentDialog } from '@talk-to-agent/store';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  closeCurrentDialog,
+  RootState,
+  updateActiveResponse,
+} from '@talk-to-agent/store';
 import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
 import dayjs, { Dayjs } from 'dayjs';
 import {
   CallWaveform,
-  CallWaveformMode,
   DialogHeader,
   MessageList,
   MessageWaveformSpeaker,
 } from './components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type Message = {
   audio: Blob;
@@ -30,10 +33,15 @@ export function CallJessicaDialog(props: Props) {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState<Message[]>([]);
-  const [playingMessage, setPlayingMessage] = useState<Blob | null>(null);
+  const activeResponse = useSelector(
+    ({ call }: RootState) => call.activeResponse
+  );
 
   const { sendMessage } = useAudioMessages({
-    onMessage: setPlayingMessage,
+    onMessage: useCallback(
+      (message: Blob) => dispatch(updateActiveResponse(message)),
+      [dispatch]
+    ),
   });
 
   return (
@@ -45,50 +53,39 @@ export function CallJessicaDialog(props: Props) {
     >
       <DialogHeader startTime={startTime} />
       <DialogContent sx={{ display: 'flex' }}>
-        {(messages.length > 0 || playingMessage) && (
+        {(messages.length > 0 || activeResponse) && (
           <Stack flexGrow={1} gap={3} justifyContent="center">
             <Stack alignItems="center" gap={2} py={3}>
               <CallWaveform
-                autoplay={!!playingMessage}
-                onFinish={
-                  playingMessage
-                    ? () => {
-                        setMessages((prev) => [
-                          ...prev,
-                          {
-                            audio: playingMessage,
-                            speaker: MessageWaveformSpeaker.Jessica,
-                            time: dayjs(),
-                          },
-                        ]);
-                        setPlayingMessage(null);
-                      }
-                    : undefined
-                }
-                {...(playingMessage
-                  ? {
-                      audio: playingMessage,
-                      mode: CallWaveformMode.Playback,
-                    }
-                  : {
-                      mode: CallWaveformMode.Record,
-                      onRecordEnd: (record) => {
-                        sendMessage(record);
-                        setMessages((prev) => [
-                          ...prev,
-                          {
-                            audio: record,
-                            speaker: MessageWaveformSpeaker.You,
-                            time: dayjs(),
-                          },
-                        ]);
+                onFinish={() => {
+                  if (activeResponse) {
+                    setMessages((prev) => [
+                      ...prev,
+                      {
+                        audio: activeResponse,
+                        speaker: MessageWaveformSpeaker.Jessica,
+                        time: dayjs(),
                       },
-                    })}
+                    ]);
+                  }
+                  dispatch(updateActiveResponse(null));
+                }}
+                onRecordEnd={(record) => {
+                  sendMessage(record);
+                  setMessages((prev) => [
+                    ...prev,
+                    {
+                      audio: record,
+                      speaker: MessageWaveformSpeaker.You,
+                      time: dayjs(),
+                    },
+                  ]);
+                }}
               />
               <IconLabel
-                Icon={playingMessage ? FlashingVolumeUp : FlashingMic}
+                Icon={activeResponse ? FlashingVolumeUp : FlashingMic}
                 label={
-                  playingMessage ? 'Jessica speaking...' : 'You are speaking...'
+                  activeResponse ? 'Jessica speaking...' : 'You are speaking...'
                 }
                 size={IconLabelSize.Small}
               />
@@ -100,7 +97,7 @@ export function CallJessicaDialog(props: Props) {
                 </Typography>
                 <MessageList
                   callStartTime={startTime}
-                  disabled={!!playingMessage}
+                  disabled={!!activeResponse}
                   messages={messages}
                 />
               </Box>
