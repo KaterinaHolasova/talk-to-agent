@@ -21,9 +21,8 @@ export function CallWaveform(props: Props) {
       return pause;
     } else {
       pause();
+      return start;
     }
-
-    return;
   }, [activeResponse, pause, paused, start]);
 
   return (
