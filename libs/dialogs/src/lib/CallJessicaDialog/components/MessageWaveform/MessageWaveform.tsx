@@ -13,13 +13,13 @@ export enum Speaker {
 }
 
 type Props = {
+  audio: Blob;
   speaker: Speaker;
   time: Dayjs;
-  url: string;
 };
 
 export function MessageWaveform(props: Props) {
-  const { speaker, time, url } = props;
+  const { audio, speaker, time } = props;
 
   const call = useSelector(({ call }: RootState) => ({
     ...call,
@@ -54,7 +54,7 @@ export function MessageWaveform(props: Props) {
         title={SPEAKER_LABEL[speaker]}
       />
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
-        <Waveform autoplay={isPlaying} onFinish={playPause} url={url} />
+        <Waveform audio={audio} autoplay={isPlaying} onFinish={playPause} />
       </CardContent>
     </Card>
   );

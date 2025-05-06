@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type ActiveResponse = string;
+type ActiveResponse = Blob;
 type StartTime = string;
 
 export interface CallState {

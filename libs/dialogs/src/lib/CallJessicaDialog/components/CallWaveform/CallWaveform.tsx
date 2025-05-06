@@ -36,10 +36,10 @@ export function CallWaveform(props: Props) {
       width={48}
     >
       <Waveform
+        audio={activeResponse}
         autoplay
         height={32}
         plugins={useMemo(() => [recordPlugin], [recordPlugin])}
-        url={activeResponse ?? undefined}
         {...rest}
       />
     </Box>
