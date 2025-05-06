@@ -15,7 +15,9 @@ export function useAudioMessages(options: Options): Return {
   const socketRef = useRef<ReconnectingWebSocket>(null);
 
   useEffect(() => {
-    const socket = new ReconnectingWebSocket('ws://localhost:8080');
+    const socket = new ReconnectingWebSocket(
+      import.meta.env.VITE_WEBSOCKET_URL
+    );
     socketRef.current = socket;
 
     socket.addEventListener('message', (event: MessageEvent) => {
