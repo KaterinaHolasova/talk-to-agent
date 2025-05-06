@@ -78,9 +78,7 @@ export function CallJessicaDialog() {
               />
               <IconLabel
                 Icon={activeResponse ? FlashingVolumeUp : FlashingMic}
-                label={
-                  activeResponse ? 'Jessica speaking...' : 'You are speaking...'
-                }
+                label={activeResponse ? 'Jessica speaking...' : 'Listening...'}
                 size={IconLabelSize.Small}
               />
             </Stack>
