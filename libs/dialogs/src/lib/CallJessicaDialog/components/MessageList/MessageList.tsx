@@ -32,9 +32,10 @@ export function MessageList(props: Props) {
     >
       <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
         <Stack gap={2}>
-          {messages.map(({ audio, speaker, time }) => (
+          {messages.map(({ audio, speaker, time }, index) => (
             <MessageWaveform
               audio={audio}
+              isLast={index + 1 === messages.length}
               key={time.toString()}
               speaker={speaker}
               time={time}

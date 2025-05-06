@@ -4,7 +4,7 @@ import { SPEAKER_LABEL } from './constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
 import { Waveform } from '@talk-to-agent/ui';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from '@talk-to-agent/assets';
 
 export enum Speaker {
@@ -14,13 +14,15 @@ export enum Speaker {
 
 type Props = {
   audio: Blob;
+  isLast?: boolean;
   speaker: Speaker;
   time: Dayjs;
 };
 
 export function MessageWaveform(props: Props) {
-  const { audio, speaker, time } = props;
+  const { audio, isLast, speaker, time } = props;
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const call = useSelector(({ call }: RootState) => ({
     ...call,
     startTime: dayjs(call.startTime),
@@ -36,8 +38,16 @@ export function MessageWaveform(props: Props) {
 
   const playPause = () => setIsPlaying((prev) => !prev);
 
+  useEffect(() => {
+    if (isLast) {
+      containerRef.current?.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [isLast]);
+
   return (
-    <Card>
+    <Card ref={containerRef}>
       <CardHeader
         action={
           <IconButton disabled={!!call.activeResponse} onClick={playPause}>
