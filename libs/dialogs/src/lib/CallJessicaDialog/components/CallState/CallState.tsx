@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { IconLabel, IconLabelSize } from '../../../../../IconLabel';
+import { IconLabel, IconLabelSize } from '@talk-to-agent/ui';
 import { RootState } from '@talk-to-agent/store';
 import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { Typography } from '@mui/material';

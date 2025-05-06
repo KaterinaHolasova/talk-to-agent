@@ -1,7 +1,5 @@
 import { Box } from '@mui/material';
-import { Pause, Phone } from '@talk-to-agent/assets';
-import { RootState } from '@talk-to-agent/store';
-import { useSelector } from 'react-redux';
+import { Phone } from '@talk-to-agent/assets';
 
 export function CallLoader() {
   return (
