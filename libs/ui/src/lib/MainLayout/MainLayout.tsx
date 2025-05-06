@@ -1,6 +1,6 @@
 import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import { ReactNode } from 'react';
-import { CallJessicaDialog, Navigation } from './components';
+import { Navigation } from './components';
 import { useDispatch } from 'react-redux';
 import { openDialog, startCall } from '@talk-to-agent/store';
 import dayjs from 'dayjs';
@@ -15,8 +15,8 @@ export function MainLayout(props: Props) {
   const dispatch = useDispatch();
 
   const handleCallJessica = () => {
-    dispatch(startCall(dayjs()));
-    dispatch(openDialog(<CallJessicaDialog />));
+    dispatch(startCall(dayjs().toString()));
+    dispatch(openDialog('callJessica'));
   };
 
   return (
