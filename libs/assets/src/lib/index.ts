@@ -7,6 +7,9 @@ export {
   FlashingVolumeUp,
   Menu,
   Mic,
+  Pause,
+  Phone,
+  Play,
   ShieldCheck,
   VolumeUp,
 } from './icons';
