@@ -1,7 +1,11 @@
 import { Box } from '@mui/material';
-import { RiPhoneLine } from '@remixicon/react';
+import { Pause, Phone } from '@talk-to-agent/assets';
+import { RootState } from '@talk-to-agent/store';
+import { useSelector } from 'react-redux';
 
 export function CallLoader() {
+  const paused = useSelector(({ call }: RootState) => call.paused);
+
   return (
     <Box
       sx={({ palette, transitions }) => ({
@@ -39,7 +43,7 @@ export function CallLoader() {
         },
       })}
     >
-      <RiPhoneLine />
+      {paused ? <Pause /> : <Phone />}
     </Box>
   );
 }

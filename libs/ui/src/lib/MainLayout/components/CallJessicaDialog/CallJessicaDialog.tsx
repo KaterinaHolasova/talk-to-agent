@@ -5,12 +5,11 @@ import {
   RootState,
   updateActiveResponse,
 } from '@talk-to-agent/store';
-import { FlashingMic, FlashingVolumeUp } from '@talk-to-agent/assets';
 import { useAudioMessages } from '@talk-to-agent/api';
-import { IconLabel, IconLabelSize } from '../../../IconLabel';
 import dayjs, { Dayjs } from 'dayjs';
 import {
   CallLoader,
+  CallState,
   CallWaveform,
   DialogHeader,
   MessageList,
@@ -28,9 +27,7 @@ export function CallJessicaDialog() {
   const dispatch = useDispatch();
 
   const [messages, setMessages] = useState<Message[]>([]);
-  const activeResponse = useSelector(
-    ({ call }: RootState) => call.activeResponse
-  );
+  const { activeResponse, paused } = useSelector(({ call }: RootState) => call);
 
   const { sendMessage } = useAudioMessages({
     onMessage: useCallback(
@@ -54,7 +51,7 @@ export function CallJessicaDialog() {
       <DialogContent sx={{ display: 'flex' }}>
         <Stack flexGrow={1} gap={3} justifyContent="center">
           <Stack alignItems="center" gap={2} py={3}>
-            {messages.length > 0 || activeResponse ? (
+            {!paused && (messages.length > 0 || activeResponse) ? (
               <CallWaveform
                 onFinish={() => {
                   if (activeResponse) {
@@ -84,11 +81,7 @@ export function CallJessicaDialog() {
             ) : (
               <CallLoader />
             )}
-            <IconLabel
-              Icon={activeResponse ? FlashingVolumeUp : FlashingMic}
-              label={activeResponse ? 'Jessica speaking...' : 'Listening...'}
-              size={IconLabelSize.Small}
-            />
+            <CallState dialing={messages.length === 0 && !activeResponse} />
           </Stack>
           {messages.length > 0 && (
             <Box>

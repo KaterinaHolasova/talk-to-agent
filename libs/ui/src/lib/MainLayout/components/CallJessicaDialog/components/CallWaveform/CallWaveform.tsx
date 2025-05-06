@@ -13,18 +13,18 @@ export function CallWaveform(props: Props) {
   const { onRecordEnd, ...rest } = props;
 
   const { pause, recordPlugin, start } = useSpeechRecording(onRecordEnd);
-  const activeResponse = useSelector(
-    ({ call }: RootState) => call.activeResponse
-  );
+  const { activeResponse, paused } = useSelector(({ call }: RootState) => call);
 
   useEffect(() => {
-    if (!activeResponse) {
+    if (!activeResponse && !paused) {
       start();
-      return () => pause();
+      return pause;
+    } else {
+      pause();
     }
 
     return;
-  }, [activeResponse, pause, start]);
+  }, [activeResponse, pause, paused, start]);
 
   return (
     <Box
