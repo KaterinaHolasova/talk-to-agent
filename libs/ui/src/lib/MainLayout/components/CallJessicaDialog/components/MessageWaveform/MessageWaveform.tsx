@@ -3,6 +3,8 @@ import { RiPauseLine, RiPlayLine } from '@remixicon/react';
 import dayjs, { Dayjs } from 'dayjs';
 import { SPEAKER_LABEL } from './constants';
 import { useWaveform } from '../../../../../useWaveform';
+import { useSelector } from 'react-redux';
+import { RootState } from '@talk-to-agent/store';
 
 export enum Speaker {
   Jessica = 'jessica',
@@ -12,21 +14,23 @@ export enum Speaker {
 type Props = {
   audio: Blob;
   callStartTime: Dayjs;
-  disabled?: boolean;
   speaker: Speaker;
   time: Dayjs;
 };
 
 export function MessageWaveform(props: Props) {
-  const { audio, callStartTime, disabled, speaker, time } = props;
+  const { audio, callStartTime, speaker, time } = props;
 
+  const activeResponse = useSelector(
+    ({ call }: RootState) => call.activeResponse
+  );
   const { getRootProps, isPlaying, playPause } = useWaveform(audio);
 
   return (
     <Card>
       <CardHeader
         action={
-          <IconButton disabled={disabled} onClick={playPause}>
+          <IconButton disabled={!!activeResponse} onClick={playPause}>
             {isPlaying ? <RiPauseLine /> : <RiPlayLine />}
           </IconButton>
         }

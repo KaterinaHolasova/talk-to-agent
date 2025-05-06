@@ -10,11 +10,10 @@ type Message = {
 
 type Props = {
   callStartTime: Dayjs;
-  disabled?: boolean;
   messages: Message[];
 };
 export function MessageList(props: Props) {
-  const { callStartTime, disabled, messages } = props;
+  const { callStartTime, messages } = props;
 
   return (
     <Box
@@ -39,7 +38,6 @@ export function MessageList(props: Props) {
               audio={audio}
               key={time.toString()}
               callStartTime={callStartTime}
-              disabled={disabled}
               speaker={speaker}
               time={time}
             />

@@ -95,11 +95,7 @@ export function CallJessicaDialog(props: Props) {
                 <Typography gutterBottom variant="h4">
                   Conversation History
                 </Typography>
-                <MessageList
-                  callStartTime={startTime}
-                  disabled={!!activeResponse}
-                  messages={messages}
-                />
+                <MessageList callStartTime={startTime} messages={messages} />
               </Box>
             )}
           </Stack>
