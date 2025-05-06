@@ -10,6 +10,7 @@ import { useAudioMessages } from '@talk-to-agent/api';
 import { IconLabel, IconLabelSize } from '../../../IconLabel';
 import dayjs, { Dayjs } from 'dayjs';
 import {
+  CallLoader,
   CallWaveform,
   DialogHeader,
   MessageList,
@@ -51,9 +52,9 @@ export function CallJessicaDialog() {
     >
       <DialogHeader />
       <DialogContent sx={{ display: 'flex' }}>
-        {(messages.length > 0 || activeResponse) && (
-          <Stack flexGrow={1} gap={3} justifyContent="center">
-            <Stack alignItems="center" gap={2} py={3}>
+        <Stack flexGrow={1} gap={3} justifyContent="center">
+          <Stack alignItems="center" gap={2} py={3}>
+            {messages.length > 0 || activeResponse ? (
               <CallWaveform
                 onFinish={() => {
                   if (activeResponse) {
@@ -80,22 +81,24 @@ export function CallJessicaDialog() {
                   ]);
                 }}
               />
-              <IconLabel
-                Icon={activeResponse ? FlashingVolumeUp : FlashingMic}
-                label={activeResponse ? 'Jessica speaking...' : 'Listening...'}
-                size={IconLabelSize.Small}
-              />
-            </Stack>
-            {messages.length > 0 && (
-              <Box>
-                <Typography gutterBottom variant="h4">
-                  Conversation History
-                </Typography>
-                <MessageList messages={messages} />
-              </Box>
+            ) : (
+              <CallLoader />
             )}
+            <IconLabel
+              Icon={activeResponse ? FlashingVolumeUp : FlashingMic}
+              label={activeResponse ? 'Jessica speaking...' : 'Listening...'}
+              size={IconLabelSize.Small}
+            />
           </Stack>
-        )}
+          {messages.length > 0 && (
+            <Box>
+              <Typography gutterBottom variant="h4">
+                Conversation History
+              </Typography>
+              <MessageList messages={messages} />
+            </Box>
+          )}
+        </Stack>
       </DialogContent>
     </Dialog>
   );
