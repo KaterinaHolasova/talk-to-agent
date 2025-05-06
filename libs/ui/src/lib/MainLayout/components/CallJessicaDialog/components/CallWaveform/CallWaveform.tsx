@@ -1,23 +1,21 @@
-import { Box, useTheme } from '@mui/material';
-import WavesurferPlayer, { WavesurferProps } from '@wavesurfer/react';
+import { Box } from '@mui/material';
 import { useSpeechRecording } from './hooks';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
+import { Waveform, WaveformProps } from '../../../../../Waveform';
 
 type Props = {
   onRecordEnd?: (blob: Blob) => void;
-} & WavesurferProps;
+} & WaveformProps;
 
 export function CallWaveform(props: Props) {
   const { onRecordEnd, ...rest } = props;
 
+  const { pause, recordPlugin, start } = useSpeechRecording(onRecordEnd);
   const activeResponse = useSelector(
     ({ call }: RootState) => call.activeResponse
   );
-
-  const { pause, recordPlugin, start } = useSpeechRecording(onRecordEnd);
-  const theme = useTheme();
 
   useEffect(() => {
     if (!activeResponse) {
@@ -36,23 +34,11 @@ export function CallWaveform(props: Props) {
       p={1}
       width={48}
     >
-      <WavesurferPlayer
+      <Waveform
+        audio={activeResponse}
         autoplay
-        barGap={2}
-        barRadius={2}
-        barWidth={2}
-        cursorWidth={0}
         height={32}
         plugins={[recordPlugin]}
-        progressColor={
-          activeResponse ? theme.palette.primary.contrastText : 'transparent'
-        }
-        url={activeResponse ? URL.createObjectURL(activeResponse) : undefined}
-        waveColor={
-          activeResponse
-            ? theme.palette.primary.dark
-            : theme.palette.text.primary
-        }
         {...rest}
       />
     </Box>
