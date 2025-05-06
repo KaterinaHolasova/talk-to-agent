@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { Dayjs } from 'dayjs';
 
-type ActiveResponse = Blob | null;
-type StartTime = Dayjs | null;
+type ActiveResponse = string;
+type StartTime = string;
 
 export interface CallState {
-  activeResponse: ActiveResponse;
-  startTime?: StartTime;
+  activeResponse: ActiveResponse | null;
+  startTime?: StartTime | null;
 }
 
 const initialState: CallState = {
@@ -22,7 +21,10 @@ export const callSlice = createSlice({
     startCall: (state, action: PayloadAction<StartTime>) => {
       state.startTime = action.payload;
     },
-    updateActiveResponse: (state, action: PayloadAction<ActiveResponse>) => {
+    updateActiveResponse: (
+      state,
+      action: PayloadAction<ActiveResponse | null>
+    ) => {
       state.activeResponse = action.payload;
     },
   },

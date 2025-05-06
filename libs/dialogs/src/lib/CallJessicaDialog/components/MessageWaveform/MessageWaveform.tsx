@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
 import dayjs, { Dayjs } from 'dayjs';
 import { SPEAKER_LABEL } from './constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
-import { Waveform } from '../../../../../Waveform';
+import { Waveform } from '@talk-to-agent/ui';
 import { useState } from 'react';
 import { Pause, Play } from '@talk-to-agent/assets';
 
@@ -13,15 +13,18 @@ export enum Speaker {
 }
 
 type Props = {
-  audio: Blob;
   speaker: Speaker;
   time: Dayjs;
+  url: string;
 };
 
 export function MessageWaveform(props: Props) {
-  const { audio, speaker, time } = props;
+  const { speaker, time, url } = props;
 
-  const call = useSelector(({ call }: RootState) => call);
+  const call = useSelector(({ call }: RootState) => ({
+    ...call,
+    startTime: dayjs(call.startTime),
+  }));
   const [isPlaying, setIsPlaying] = useState(false);
 
   const formattedTime =
@@ -51,7 +54,7 @@ export function MessageWaveform(props: Props) {
         title={SPEAKER_LABEL[speaker]}
       />
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
-        <Waveform autoplay={isPlaying} audio={audio} onFinish={playPause} />
+        <Waveform autoplay={isPlaying} onFinish={playPause} url={url} />
       </CardContent>
     </Card>
   );

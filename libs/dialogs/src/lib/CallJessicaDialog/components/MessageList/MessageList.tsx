@@ -3,9 +3,9 @@ import { MessageWaveform, MessageWaveformSpeaker } from '../MessageWaveform';
 import { Dayjs } from 'dayjs';
 
 type Message = {
-  audio: Blob;
   speaker: MessageWaveformSpeaker;
   time: Dayjs;
+  url: string;
 };
 
 type Props = {
@@ -32,12 +32,12 @@ export function MessageList(props: Props) {
     >
       <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
         <Stack gap={2}>
-          {messages.map(({ audio, speaker, time }) => (
+          {messages.map(({ speaker, time, url }) => (
             <MessageWaveform
-              audio={audio}
               key={time.toString()}
               speaker={speaker}
               time={time}
+              url={url}
             />
           ))}
         </Stack>

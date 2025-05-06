@@ -7,7 +7,7 @@ import { Call } from '@talk-to-agent/assets';
 
 export function DialogHeader() {
   const dispatch = useDispatch();
-  const startTime = useSelector(({ call }: RootState) => call.startTime);
+  const startTime = useSelector(({ call }: RootState) => dayjs(call.startTime));
   const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {

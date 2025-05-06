@@ -18,9 +18,9 @@ import {
 import { useCallback, useState } from 'react';
 
 type Message = {
-  audio: Blob;
   speaker: MessageWaveformSpeaker;
   time: Dayjs;
+  url: string;
 };
 
 export function CallJessicaDialog() {
@@ -33,7 +33,8 @@ export function CallJessicaDialog() {
 
   const { sendMessage } = useAudioMessages({
     onMessage: useCallback(
-      (message: Blob) => dispatch(updateActiveResponse(message)),
+      (message: Blob) =>
+        dispatch(updateActiveResponse(URL.createObjectURL(message))),
       [dispatch]
     ),
   });
@@ -60,9 +61,9 @@ export function CallJessicaDialog() {
                     setMessages((prev) => [
                       ...prev,
                       {
-                        audio: activeResponse,
                         speaker: MessageWaveformSpeaker.Jessica,
                         time: dayjs(),
+                        url: activeResponse ?? undefined,
                       },
                     ]);
                   }
@@ -73,9 +74,9 @@ export function CallJessicaDialog() {
                   setMessages((prev) => [
                     ...prev,
                     {
-                      audio: record,
                       speaker: MessageWaveformSpeaker.You,
                       time: dayjs(),
+                      url: URL.createObjectURL(record),
                     },
                   ]);
                 }}
