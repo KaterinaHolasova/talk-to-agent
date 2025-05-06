@@ -25,12 +25,13 @@ export function MessageWaveform(props: Props) {
     ...call,
     startTime: dayjs(call.startTime),
   }));
+  const [duration, setDuration] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const formattedTime =
     call.startTime &&
     dayjs
-      .duration(Math.abs(call.startTime.diff(time, 's')), 's')
+      .duration(Math.abs(call.startTime.diff(time, 's') + duration), 's')
       .format('mm:ss');
 
   const playPause = () => setIsPlaying((prev) => !prev);
@@ -54,7 +55,12 @@ export function MessageWaveform(props: Props) {
         title={SPEAKER_LABEL[speaker]}
       />
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
-        <Waveform audio={audio} autoplay={isPlaying} onFinish={playPause} />
+        <Waveform
+          audio={audio}
+          autoplay={isPlaying}
+          onFinish={playPause}
+          onReady={(waveSurfer) => setDuration(waveSurfer.getDuration())}
+        />
       </CardContent>
     </Card>
   );
