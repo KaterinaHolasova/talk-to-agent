@@ -5,8 +5,16 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['call/updateActiveResponse', 'dialog/openDialog'],
-        ignoredPaths: ['call.activeResponse', 'dialog.component'],
+        ignoredActions: [
+          'call/startCall',
+          'call/updateActiveResponse',
+          'dialog/openDialog',
+        ],
+        ignoredPaths: [
+          'call.startTime',
+          'call.activeResponse',
+          'dialog.component',
+        ],
       },
     }),
   reducer: {
