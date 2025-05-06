@@ -28,6 +28,8 @@ export function useSpeechRecording(onEnd?: (blob: Blob) => void) {
   useEffect(() => {
     if (onEnd) {
       recordPlugin.on('record-end', onEnd);
+
+      return recordPlugin.un('record-end', onEnd);
     }
   }, [onEnd, recordPlugin]);
 
