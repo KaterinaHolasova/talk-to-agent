@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { useSpeechRecording } from './hooks';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
 import { Waveform, WaveformProps } from '../../../../../Waveform';
@@ -18,11 +18,13 @@ export function CallWaveform(props: Props) {
   useEffect(() => {
     if (!activeResponse && !paused) {
       start();
-      return pause;
-    } else {
+      return () => pause();
+    } else if (!activeResponse && paused) {
       pause();
-      return start;
+      return () => start();
     }
+
+    return;
   }, [activeResponse, pause, paused, start]);
 
   return (
@@ -37,7 +39,7 @@ export function CallWaveform(props: Props) {
         audio={activeResponse}
         autoplay
         height={32}
-        plugins={[recordPlugin]}
+        plugins={useMemo(() => [recordPlugin], [recordPlugin])}
         {...rest}
       />
     </Box>
