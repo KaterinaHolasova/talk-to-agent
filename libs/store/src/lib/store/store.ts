@@ -1,15 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { dialogReducer } from './slices';
+import { callReducer, dialogReducer } from './slices';
 
 export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['dialog/openDialog'],
-        ignoredPaths: ['dialog.component'],
+        ignoredActions: ['call/updateActiveResponse', 'dialog/openDialog'],
+        ignoredPaths: ['call.activeResponse', 'dialog.component'],
       },
     }),
   reducer: {
+    call: callReducer,
     dialog: dialogReducer,
   },
 });
