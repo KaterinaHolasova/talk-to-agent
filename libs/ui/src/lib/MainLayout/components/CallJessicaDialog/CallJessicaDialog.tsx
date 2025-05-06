@@ -42,7 +42,11 @@ export function CallJessicaDialog() {
     <Dialog
       aria-labelledby="dialog-title"
       maxWidth="xs"
-      onClose={() => dispatch(closeCurrentDialog())}
+      onClose={(_, reason) => {
+        if (reason !== 'backdropClick') {
+          dispatch(closeCurrentDialog());
+        }
+      }}
       open
     >
       <DialogHeader />
