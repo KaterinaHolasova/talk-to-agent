@@ -4684,6 +4684,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@talk-to-agent/dialogs@workspace:libs/dialogs":
+  version: 0.0.0-use.local
+  resolution: "@talk-to-agent/dialogs@workspace:libs/dialogs"
+  languageName: unknown
+  linkType: soft
+
 "@talk-to-agent/source@workspace:.":
   version: 0.0.0-use.local
   resolution: "@talk-to-agent/source@workspace:."
