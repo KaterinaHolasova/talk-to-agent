@@ -26,11 +26,10 @@ export function useSpeechRecording(onEnd?: (blob: Blob) => void) {
   }, [recordPlugin, micVAD]);
 
   useEffect(() => {
-    if (onEnd) {
-      recordPlugin.on('record-end', (record) => onEnd(record));
+    const handleRecordEnd = (record: Blob) => onEnd?.(record);
 
-      return recordPlugin.un('record-end', (record) => onEnd(record));
-    }
+    recordPlugin.on('record-end', handleRecordEnd);
+    return () => recordPlugin.un('record-end', handleRecordEnd);
   }, [onEnd, recordPlugin]);
 
   return { pause, recordPlugin, start };

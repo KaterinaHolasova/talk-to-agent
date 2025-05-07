@@ -23,8 +23,6 @@ export function CallWaveform(props: Props) {
     } else if (recordPlugin.isRecording()) {
       pause();
     }
-
-    return;
   }, [activeResponse, pause, recordPlugin, start]);
 
   return (
