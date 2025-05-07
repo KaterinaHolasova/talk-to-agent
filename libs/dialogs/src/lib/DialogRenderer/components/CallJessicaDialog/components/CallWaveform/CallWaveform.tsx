@@ -3,11 +3,11 @@ import { useSpeechRecording } from './hooks';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
-import { Waveform, WaveformProps } from '@talk-to-agent/ui';
+import { useWaveform, UseWaveformOptions } from '@talk-to-agent/ui';
 
 type Props = {
   onRecordEnd?: (blob: Blob) => void;
-} & WaveformProps;
+} & UseWaveformOptions;
 
 export function CallWaveform(props: Props) {
   const { onRecordEnd, ...rest } = props;
@@ -17,6 +17,14 @@ export function CallWaveform(props: Props) {
     ({ call }: RootState) => call.activeResponse
   );
 
+  const { rootProps } = useWaveform({
+    audio: activeResponse,
+    height: 32,
+    playing: !!activeResponse,
+    plugins: useMemo(() => [recordPlugin], [recordPlugin]),
+    ...rest,
+  });
+
   return (
     <Box
       bgcolor={({ palette }) => palette.primary.main}
@@ -25,13 +33,7 @@ export function CallWaveform(props: Props) {
       p={1}
       width={48}
     >
-      <Waveform
-        audio={activeResponse}
-        height={32}
-        playing={!!activeResponse}
-        plugins={useMemo(() => [recordPlugin], [recordPlugin])}
-        {...rest}
-      />
+      <div {...rootProps} />
     </Box>
   );
 }

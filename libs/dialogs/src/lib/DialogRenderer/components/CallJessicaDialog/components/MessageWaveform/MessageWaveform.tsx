@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { SPEAKER_LABEL } from './constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
-import { Waveform } from '@talk-to-agent/ui';
+import { useWaveform } from '@talk-to-agent/ui';
 import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from '@talk-to-agent/assets';
 import { Message } from '../../types';
@@ -20,16 +20,14 @@ export function MessageWaveform(props: Props) {
     ...call,
     startTime: dayjs(call.startTime),
   }));
-  const [duration, setDuration] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  const formattedTime =
-    call.startTime &&
-    dayjs
-      .duration(Math.abs(call.startTime.diff(time, 's') + duration), 's')
-      .format('mm:ss');
-
   const playPause = () => setPlaying((prev) => !prev);
+  const { duration, rootProps } = useWaveform({
+    audio,
+    onFinish: playPause,
+    playing: playing,
+  });
 
   useEffect(() => {
     if (isLast) {
@@ -38,6 +36,12 @@ export function MessageWaveform(props: Props) {
       });
     }
   }, [isLast]);
+
+  const formattedTime =
+    call.startTime &&
+    dayjs
+      .duration(Math.abs(call.startTime.diff(time, 's') + (duration ?? 0)), 's')
+      .format('mm:ss');
 
   return (
     <Card ref={containerRef}>
@@ -58,12 +62,7 @@ export function MessageWaveform(props: Props) {
         title={SPEAKER_LABEL[speaker]}
       />
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
-        <Waveform
-          audio={audio}
-          onFinish={playPause}
-          // onReady={(waveSurfer) => setDuration(waveSurfer.getDuration())}
-          playing={playing}
-        />
+        <div {...rootProps} />
       </CardContent>
     </Card>
   );

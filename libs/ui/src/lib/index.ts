@@ -1,3 +1,3 @@
 export { IconLabel, IconLabelSize } from './IconLabel';
 export { MainLayout } from './MainLayout';
-export { Waveform, type WaveformProps } from './Waveform';
+export { useWaveform, type UseWaveformOptions } from './useWaveform';

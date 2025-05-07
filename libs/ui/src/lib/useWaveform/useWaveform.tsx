@@ -3,14 +3,14 @@ import { useWavesurfer } from '@wavesurfer/react';
 import { useEffect, useMemo, useRef } from 'react';
 import { WaveSurferOptions } from 'wavesurfer.js';
 
-export type Props = {
+export type Options = {
   audio?: Blob | null;
   onFinish?: () => void;
   playing?: boolean;
 } & Omit<WaveSurferOptions, 'container'>;
 
-export function Waveform(props: Props) {
-  const { audio, onFinish, playing, ...rest } = props;
+export function useWaveform(options: Options) {
+  const { audio, onFinish, playing, ...rest } = options;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { palette } = useTheme();
@@ -52,5 +52,8 @@ export function Waveform(props: Props) {
     }
   }, [isPlaying, playing, wavesurfer]);
 
-  return <div ref={containerRef} />;
+  return {
+    duration: wavesurfer?.getDuration(),
+    rootProps: { ref: containerRef },
+  };
 }
