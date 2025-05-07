@@ -16,15 +16,17 @@ export function CallJessicaDialog() {
   const { dialing, handleFinish, handleRecordEnd, messages } =
     useCallJessicaDialog();
 
+  const handleClose = (reason: 'backdropClick' | 'escapeKeyDown') => {
+    if (reason !== 'backdropClick') {
+      dispatch(closeCurrentDialog());
+    }
+  };
+
   return (
     <Dialog
       aria-labelledby="dialog-title"
       maxWidth="xs"
-      onClose={(_, reason) => {
-        if (reason !== 'backdropClick') {
-          dispatch(closeCurrentDialog());
-        }
-      }}
+      onClose={(_, reason) => handleClose(reason)}
       open
     >
       <DialogHeader />

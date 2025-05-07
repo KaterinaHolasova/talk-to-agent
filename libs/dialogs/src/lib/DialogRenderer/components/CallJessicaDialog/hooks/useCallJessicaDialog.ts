@@ -8,10 +8,10 @@ import { Message, MessageSpeaker } from '../types';
 export function useCallJessicaDialog() {
   const dispatch = useDispatch();
 
-  const [messages, setMessages] = useState<Message[]>([]);
   const activeResponse = useSelector(
     ({ call }: RootState) => call.activeResponse
   );
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const { sendMessage } = useAudioMessages({
     onMessage: useCallback(
@@ -31,6 +31,7 @@ export function useCallJessicaDialog() {
         },
       ]);
     }
+
     dispatch(updateActiveResponse(null));
   }, [activeResponse, dispatch]);
 
