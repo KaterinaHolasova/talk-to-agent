@@ -11,7 +11,7 @@ import { ReactComponent as CallSvg } from './Call.svg';
 import { ReactComponent as ChartLineUpSvg } from './ChartLineUp.svg';
 import { ReactComponent as CoinsSvg } from './Coins.svg';
 import { ReactComponent as ShieldCheckSvg } from './ShieldCheck.svg';
-import { createFlashingIcon } from './createFlashingIcon';
+import { createFlashingIcon } from './helpers';
 
 export const Call = createSvgIcon(<CallSvg />, 'Call');
 export const ChartLineUp = createSvgIcon(<ChartLineUpSvg />, 'ChartLineUp');

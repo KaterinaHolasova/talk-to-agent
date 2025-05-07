@@ -11,7 +11,6 @@ export function FlashingIcon(props: Props) {
   return (
     <Box
       sx={({ transitions }) => ({
-        display: 'flex',
         '@keyframes flashing': {
           '0%': {
             opacity: 0,
@@ -23,6 +22,7 @@ export function FlashingIcon(props: Props) {
             opacity: 0,
           },
         },
+        display: 'flex',
         animation: `flashing 1200ms ${transitions.easing.easeInOut} infinite`,
       })}
     >
