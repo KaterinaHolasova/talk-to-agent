@@ -25,6 +25,12 @@ export function CallWaveform(props: Props) {
     }
   }, [activeResponse, pause, recordPlugin, start]);
 
+  useEffect(() => {
+    return () => {
+      recordPlugin.stopRecording();
+    };
+  }, [recordPlugin]);
+
   return (
     <Box
       bgcolor={({ palette }) => palette.primary.main}
