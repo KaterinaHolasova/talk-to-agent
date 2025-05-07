@@ -18,7 +18,8 @@ export function MessageList(props: Props) {
           position: 'absolute',
           zIndex: 5,
           bottom: 0,
-          width: '100%',
+          left: 0,
+          right: 0,
           height: spacing(3),
           backgroundImage: `linear-gradient(transparent, ${palette.background.default})`,
         },
@@ -26,13 +27,11 @@ export function MessageList(props: Props) {
     >
       <Box sx={{ overflowY: 'auto', maxHeight: '240px', pb: 3 }}>
         <Stack gap={2}>
-          {messages.map(({ audio, speaker, time }, index) => (
+          {messages.map((item, index) => (
             <MessageWaveform
-              audio={audio}
               isLast={index + 1 === messages.length}
-              key={time.toString()}
-              speaker={speaker}
-              time={time}
+              key={item.time.toString()}
+              {...item}
             />
           ))}
         </Stack>
