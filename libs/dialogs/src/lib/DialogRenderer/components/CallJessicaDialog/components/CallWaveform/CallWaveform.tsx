@@ -6,16 +6,16 @@ import { RootState } from '@talk-to-agent/store';
 import { useWaveform, UseWaveformOptions } from '@talk-to-agent/ui';
 
 type Props = {
-  onRecordEnd?: (blob: Blob) => void;
+  onRecordEnd?: (record: Blob) => void;
 } & UseWaveformOptions;
 
 export function CallWaveform(props: Props) {
   const { onRecordEnd, ...rest } = props;
 
-  const { recordPlugin } = useSpeechRecording(onRecordEnd);
   const activeResponse = useSelector(
     ({ call }: RootState) => call.activeResponse
   );
+  const { recordPlugin } = useSpeechRecording(onRecordEnd);
 
   const { rootProps } = useWaveform({
     audio: activeResponse,
