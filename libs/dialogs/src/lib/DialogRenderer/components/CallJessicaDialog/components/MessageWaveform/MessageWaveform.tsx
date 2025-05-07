@@ -1,23 +1,16 @@
 import { Card, CardContent, CardHeader, IconButton } from '@mui/material';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { SPEAKER_LABEL } from './constants';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
 import { Waveform } from '@talk-to-agent/ui';
 import { useEffect, useRef, useState } from 'react';
 import { Pause, Play } from '@talk-to-agent/assets';
-
-export enum Speaker {
-  Jessica = 'jessica',
-  You = 'you',
-}
+import { Message } from '../../types';
 
 type Props = {
-  audio: Blob;
   isLast?: boolean;
-  speaker: Speaker;
-  time: Dayjs;
-};
+} & Message;
 
 export function MessageWaveform(props: Props) {
   const { audio, isLast, speaker, time } = props;

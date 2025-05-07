@@ -1,12 +1,6 @@
 import { Box, Stack } from '@mui/material';
-import { MessageWaveform, MessageWaveformSpeaker } from '../MessageWaveform';
-import { Dayjs } from 'dayjs';
-
-type Message = {
-  audio: Blob;
-  speaker: MessageWaveformSpeaker;
-  time: Dayjs;
-};
+import { MessageWaveform } from '../MessageWaveform';
+import { Message } from '../../types';
 
 type Props = {
   messages: Message[];
