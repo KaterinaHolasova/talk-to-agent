@@ -1,20 +1,18 @@
 import { useMicVAD } from '@ricky0123/vad-react';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import RecordPlugin from 'wavesurfer.js/dist/plugins/record.js';
 
 export function useSpeechRecording(onEnd?: (blob: Blob) => void) {
-  const recordPlugin = RecordPlugin.create();
+  const recordPlugin = useMemo(() => RecordPlugin.create(), []);
 
-  const micVAD = useMicVAD({
+  useMicVAD({
     onSpeechEnd: () => recordPlugin.stopRecording(),
-    startOnLoad: false,
     userSpeakingThreshold: 1,
   });
 
   const pause = useCallback(() => {
-    micVAD.pause();
     recordPlugin.pauseRecording();
-  }, [micVAD, recordPlugin]);
+  }, [recordPlugin]);
 
   const start = useCallback(async () => {
     const deviceId = await RecordPlugin.getAvailableAudioDevices().then(
@@ -22,8 +20,7 @@ export function useSpeechRecording(onEnd?: (blob: Blob) => void) {
     );
 
     recordPlugin.startRecording({ deviceId });
-    micVAD.start();
-  }, [recordPlugin, micVAD]);
+  }, [recordPlugin]);
 
   useEffect(() => {
     const handleRecordEnd = (record: Blob) => onEnd?.(record);
