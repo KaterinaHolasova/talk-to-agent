@@ -6,5 +6,6 @@ export {
 export {
   closeCurrentDialog,
   default as dialogReducer,
+  type DialogComponent,
   openDialog,
 } from './dialogSlice';

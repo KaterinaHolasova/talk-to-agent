@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { store } from '../store';
-import { Dialog } from '../Dialog';
 
 type Props = {
   children: ReactNode;
@@ -10,10 +9,5 @@ type Props = {
 export function StoreProvider(props: Props) {
   const { children } = props;
 
-  return (
-    <Provider store={store}>
-      {children}
-      <Dialog />
-    </Provider>
-  );
+  return <Provider store={store}>{children}</Provider>;
 }

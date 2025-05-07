@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { DIALOG_COMPONENT } from '../../Dialog';
 
-type Component = keyof typeof DIALOG_COMPONENT;
+export type DialogComponent = 'callJessica';
 
 export interface DialogState {
-  component: Component | null;
+  component: DialogComponent | null;
 }
 
 const initialState: DialogState = {
@@ -19,7 +18,7 @@ export const dialogSlice = createSlice({
     closeCurrentDialog: (state) => {
       state.component = null;
     },
-    openDialog: (state, action: PayloadAction<Component>) => {
+    openDialog: (state, action: PayloadAction<DialogComponent>) => {
       state.component = action.payload;
     },
   },

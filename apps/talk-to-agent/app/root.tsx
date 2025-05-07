@@ -9,6 +9,7 @@ import {
   type MetaFunction,
 } from 'react-router';
 import { StoreProvider } from '@talk-to-agent/store';
+import { DialogRenderer } from '@talk-to-agent/dialogs';
 
 type Props = {
   children: ReactNode;
@@ -33,7 +34,10 @@ export function Layout(props: Props) {
       </head>
       <body>
         <ThemeProvider>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            {children}
+            <DialogRenderer />
+          </StoreProvider>
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />

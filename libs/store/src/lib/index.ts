@@ -1,5 +1,6 @@
 export {
   closeCurrentDialog,
+  type DialogComponent,
   openDialog,
   type RootState,
   startCall,
