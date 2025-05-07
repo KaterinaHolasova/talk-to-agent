@@ -33,8 +33,9 @@ export function DialogHeader() {
         aria-label="close"
         color="error"
         onClick={() => dispatch(closeCurrentDialog())}
+        size="small"
       >
-        <Call />
+        <Call fontSize="small" />
       </IconButton>
     </Stack>
   );

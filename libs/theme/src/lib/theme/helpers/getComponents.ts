@@ -231,7 +231,7 @@ export function getComponents({
     MuiSvgIcon: {
       styleOverrides: {
         fontSizeSmall: {
-          fontSize: '16px',
+          fontSize: '18px',
         },
       },
     },
@@ -264,7 +264,7 @@ export function getComponents({
       },
       styleOverrides: {
         gutterBottom: {
-          marginBottom: '0.3em',
+          marginBottom: '0.25em',
         },
       },
     },
