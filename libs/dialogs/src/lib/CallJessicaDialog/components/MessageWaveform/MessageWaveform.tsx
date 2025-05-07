@@ -28,7 +28,7 @@ export function MessageWaveform(props: Props) {
     startTime: dayjs(call.startTime),
   }));
   const [duration, setDuration] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   const formattedTime =
     call.startTime &&
@@ -36,7 +36,7 @@ export function MessageWaveform(props: Props) {
       .duration(Math.abs(call.startTime.diff(time, 's') + duration), 's')
       .format('mm:ss');
 
-  const playPause = () => setIsPlaying((prev) => !prev);
+  const playPause = () => setPlaying((prev) => !prev);
 
   useEffect(() => {
     if (isLast) {
@@ -51,7 +51,7 @@ export function MessageWaveform(props: Props) {
       <CardHeader
         action={
           <IconButton disabled={!!call.activeResponse} onClick={playPause}>
-            {isPlaying ? <Pause /> : <Play />}
+            {playing ? <Pause /> : <Play />}
           </IconButton>
         }
         slotProps={{
@@ -67,9 +67,9 @@ export function MessageWaveform(props: Props) {
       <CardContent sx={{ '&:last-of-type': { pb: 1 } }}>
         <Waveform
           audio={audio}
-          autoplay={isPlaying}
           onFinish={playPause}
-          onReady={(waveSurfer) => setDuration(waveSurfer.getDuration())}
+          // onReady={(waveSurfer) => setDuration(waveSurfer.getDuration())}
+          playing={playing}
         />
       </CardContent>
     </Card>

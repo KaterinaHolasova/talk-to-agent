@@ -41,8 +41,8 @@ export function CallWaveform(props: Props) {
     >
       <Waveform
         audio={activeResponse}
-        autoplay
         height={32}
+        playing={!!activeResponse}
         plugins={useMemo(() => [recordPlugin], [recordPlugin])}
         {...rest}
       />
