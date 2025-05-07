@@ -1,6 +1,6 @@
-import { Speaker } from './MessageWaveform';
+import { MessageSpeaker } from '../../types';
 
-export const SPEAKER_LABEL: Record<Speaker, string> = {
+export const SPEAKER_LABEL: Record<MessageSpeaker, string> = {
   jessica: 'Jessica',
   you: 'You',
 };

@@ -23,10 +23,11 @@ export function MessageWaveform(props: Props) {
   const [playing, setPlaying] = useState(false);
 
   const playPause = () => setPlaying((prev) => !prev);
+
   const { duration, rootProps } = useWaveform({
     audio,
     onFinish: playPause,
-    playing: playing,
+    playing,
   });
 
   useEffect(() => {
@@ -39,8 +40,9 @@ export function MessageWaveform(props: Props) {
 
   const formattedTime =
     call.startTime &&
+    duration &&
     dayjs
-      .duration(Math.abs(call.startTime.diff(time, 's') + (duration ?? 0)), 's')
+      .duration(Math.abs(call.startTime.diff(time, 's') + duration), 's')
       .format('mm:ss');
 
   return (
