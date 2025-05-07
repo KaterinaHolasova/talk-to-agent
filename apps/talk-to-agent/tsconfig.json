@@ -6,6 +6,9 @@
       "path": "../../libs/assets"
     },
     {
+      "path": "../../libs/dialogs"
+    },
+    {
       "path": "../../libs/store"
     },
     {

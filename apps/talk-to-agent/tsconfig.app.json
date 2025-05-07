@@ -46,6 +46,9 @@
       "path": "../../libs/assets/tsconfig.lib.json"
     },
     {
+      "path": "../../libs/dialogs/tsconfig.lib.json"
+    },
+    {
       "path": "../../libs/store/tsconfig.lib.json"
     },
     {
