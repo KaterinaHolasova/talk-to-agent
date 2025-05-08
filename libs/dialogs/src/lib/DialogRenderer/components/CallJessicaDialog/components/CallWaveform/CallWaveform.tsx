@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
-import { useSpeechRecording } from './hooks';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@talk-to-agent/store';
 import { useWaveform, UseWaveformOptions } from '@talk-to-agent/ui';
+import { useSpeechRecording } from '../../hooks';
 
 type Props = {
   onRecordEnd?: (record: Blob) => void;
