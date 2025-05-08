@@ -1,11 +1,12 @@
 import { useMicVAD } from '@ricky0123/vad-react';
 import { RootState } from '@talk-to-agent/store';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import RecordPlugin from 'wavesurfer.js/dist/plugins/record.js';
+import { useRecordPlugin } from './useRecordPlugin';
 
 export function useSpeechRecording(onEnd?: (record: Blob) => void) {
-  const recordPlugin = useMemo(() => RecordPlugin.create(), []);
+  const recordPlugin = useRecordPlugin(onEnd);
   const activeResponse = useSelector(
     ({ call }: RootState) => call.activeResponse
   );
@@ -16,15 +17,10 @@ export function useSpeechRecording(onEnd?: (record: Blob) => void) {
   });
 
   useEffect(() => {
-    const handleRecordEnd = (record: Blob) => onEnd?.(record);
-
-    recordPlugin.on('record-end', handleRecordEnd);
-    return () => recordPlugin.un('record-end', handleRecordEnd);
-  }, [onEnd, recordPlugin]);
-
-  useEffect(() => {
     return () => {
-      recordPlugin.stopRecording();
+      if (recordPlugin.isRecording()) {
+        recordPlugin.stopRecording();
+      }
     };
   }, [recordPlugin]);
 
