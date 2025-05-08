@@ -1,6 +1,9 @@
 import { AppBar, Box, Button, Container, Toolbar } from '@mui/material';
 import { ReactNode } from 'react';
 import { Navigation } from './components';
+import { useDispatch } from 'react-redux';
+import { openDialog, startCall } from '@talk-to-agent/store';
+import dayjs from 'dayjs';
 
 type Props = {
   children: ReactNode;
@@ -8,6 +11,13 @@ type Props = {
 
 export function MainLayout(props: Props) {
   const { children } = props;
+
+  const dispatch = useDispatch();
+
+  const handleCallJessica = () => {
+    dispatch(startCall(dayjs().toString()));
+    dispatch(openDialog('callJessica'));
+  };
 
   return (
     <>
@@ -17,7 +27,7 @@ export function MainLayout(props: Props) {
             <Box flexGrow={1}>
               <Navigation />
             </Box>
-            <Button>Call Jessica</Button>
+            <Button onClick={handleCallJessica}>Call Jessica</Button>
           </Toolbar>
         </Container>
       </AppBar>

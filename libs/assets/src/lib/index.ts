@@ -1,2 +1,15 @@
 export { GilroyBold, GilroyRegular, GilroySemibold } from './fonts';
-export { ChartLineUp, Coins, ShieldCheck } from './icons';
+export {
+  Call,
+  ChartLineUp,
+  Coins,
+  FlashingMic,
+  FlashingVolumeUp,
+  Menu,
+  Mic,
+  Pause,
+  Phone,
+  Play,
+  ShieldCheck,
+  VolumeUp,
+} from './icons';

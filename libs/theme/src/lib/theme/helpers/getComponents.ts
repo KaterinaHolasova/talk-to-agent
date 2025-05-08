@@ -49,6 +49,19 @@ export function getComponents({
         },
       },
     },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: spacing(0, 2, 2),
+          '&:first-of-type': {
+            paddingTop: spacing(2),
+          },
+          '&:last-of-type': {
+            paddingBottom: spacing(2),
+          },
+        },
+      },
+    },
     MuiContainer: {
       defaultProps: {
         maxWidth: 'md',
@@ -94,6 +107,48 @@ export function getComponents({
           src: local('Gilroy Bold'), local('Gilroy-Bold'), url(${GilroyBold}) format('truetype');
         }
       `,
+    },
+    MuiDialog: {
+      defaultProps: {
+        fullWidth: true,
+      },
+      styleOverrides: {
+        paper: {
+          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
+        },
+        paperWidthXs: {
+          maxWidth: '280px',
+          minHeight: '280px',
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          padding: spacing(0, 3, 3),
+          '&:first-of-type': {
+            paddingTop: spacing(3),
+          },
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        colorError: {
+          backgroundColor: palette.error.main,
+          color: palette.error.contrastText,
+          '&:hover': {
+            backgroundColor: palette.error.dark,
+          },
+        },
+      },
     },
     MuiLink: {
       defaultProps: {
@@ -173,10 +228,10 @@ export function getComponents({
         },
       },
     },
-    MuiPaper: {
+    MuiSvgIcon: {
       styleOverrides: {
-        root: {
-          backgroundImage: `linear-gradient(-145deg, ${palette.background.paper} 0%, ${palette.background.default} 100%)`,
+        fontSizeSmall: {
+          fontSize: '18px',
         },
       },
     },
@@ -209,7 +264,7 @@ export function getComponents({
       },
       styleOverrides: {
         gutterBottom: {
-          marginBottom: spacing(3),
+          marginBottom: '0.25em',
         },
       },
     },

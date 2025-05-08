@@ -1,0 +1,1 @@
+export { createFlashingIcon } from './createFlashingIcon';

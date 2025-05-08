@@ -1,0 +1,1 @@
+export { MessageWaveform } from './MessageWaveform';

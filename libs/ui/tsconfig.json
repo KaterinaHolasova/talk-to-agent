@@ -3,6 +3,12 @@
   "include": [],
   "references": [
     {
+      "path": "../assets"
+    },
+    {
+      "path": "../store"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

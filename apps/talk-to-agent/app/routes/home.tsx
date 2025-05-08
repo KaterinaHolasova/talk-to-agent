@@ -26,12 +26,12 @@ export default function Home() {
         gap={{ xs: 3, md: 5 }}
         justifyContent={{ lg: 'space-between' }}
       >
-        <IconLabel icon={<Coins />} label="Reduce costs by 40%." />
+        <IconLabel Icon={Coins} label="Reduce costs by 40%." />
         <IconLabel
-          icon={<ChartLineUp />}
+          Icon={ChartLineUp}
           label="Increase customer satisfaction by 30%."
         />
-        <IconLabel icon={<ShieldCheck />} label="Trusted by those you know." />
+        <IconLabel Icon={ShieldCheck} label="Trusted by those you know." />
       </Stack>
     </>
   );

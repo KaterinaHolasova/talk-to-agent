@@ -19,6 +19,24 @@ export function getTypography({
         fontSize: '96px',
       },
     },
+    h4: {
+      fontSize: '14px',
+      lineHeight: '22px',
+      fontWeight: typography.fontWeightBold,
+      letterSpacing: '0.04375rem',
+    },
+    h5: {
+      fontSize: '14px',
+      lineHeight: '22px',
+      fontWeight: typography.fontWeightBold,
+      letterSpacing: '0.04375rem',
+    },
+    h6: {
+      fontSize: '12px',
+      lineHeight: '18px',
+      fontWeight: typography.fontWeightBold,
+      letterSpacing: '0.0375rem',
+    },
     button: {
       fontSize: '14px',
       lineHeight: '22px',
