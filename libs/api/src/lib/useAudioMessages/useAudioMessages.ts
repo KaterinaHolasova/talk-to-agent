@@ -31,7 +31,9 @@ export function useAudioMessages(options: Options): Return {
 
   const sendMessage = (message: Blob) => {
     if (socketRef.current) {
-      socketRef.current.send(message);
+      const wavFile = new File([message], 'message.wav', { type: 'audio/wav' });
+
+      socketRef.current.send(wavFile);
     } else {
       console.error('WebSocket is not connected.');
     }
