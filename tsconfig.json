@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/talk-to-agent-e2e"
-    },
-    {
       "path": "./apps/talk-to-agent"
     },
     {

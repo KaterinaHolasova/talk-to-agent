@@ -1,7 +1,19 @@
 # assets
 
-This library was generated with [Nx](https://nx.dev).
+## Purpose
 
-## Running unit tests
+The `assets` library provides static assets such as fonts, icons, and other resources used across the project. It is designed to centralize and organize these resources for easy access and consistency.
 
-Run `nx test assets` to execute the unit tests via [Jest](https://jestjs.io).
+## Features
+
+- Centralized management of static assets.
+- Easy access to commonly used resources.
+- Consistent asset usage across the application.
+
+## Installation
+
+To use the `assets` library in your project, import the required assets:
+
+```typescript
+import { Menu } from '@talk-to-agent/assets';
+```
