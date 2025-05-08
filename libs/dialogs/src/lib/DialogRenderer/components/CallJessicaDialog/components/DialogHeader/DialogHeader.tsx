@@ -14,7 +14,7 @@ export function DialogHeader() {
     if (!startTime) return;
 
     const interval = setInterval(
-      () => setSeconds(Math.abs(startTime.diff(dayjs(), 's'))),
+      () => setSeconds(dayjs().diff(startTime, 's')),
       1000
     );
 
