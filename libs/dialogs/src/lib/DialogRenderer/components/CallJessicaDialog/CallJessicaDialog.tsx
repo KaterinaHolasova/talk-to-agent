@@ -13,7 +13,7 @@ import { useCallJessicaDialog } from './hooks';
 export function CallJessicaDialog() {
   const dispatch = useDispatch();
 
-  const { dialing, handleFinish, handleRecordEnd, messages } =
+  const { dialing, handleMessageFinish, handleRecordEnd, messages } =
     useCallJessicaDialog();
 
   const handleClose = (reason: 'backdropClick' | 'escapeKeyDown') => {
@@ -37,7 +37,7 @@ export function CallJessicaDialog() {
               <CallLoader />
             ) : (
               <CallWaveform
-                onFinish={handleFinish}
+                onFinish={handleMessageFinish}
                 onRecordEnd={handleRecordEnd}
               />
             )}

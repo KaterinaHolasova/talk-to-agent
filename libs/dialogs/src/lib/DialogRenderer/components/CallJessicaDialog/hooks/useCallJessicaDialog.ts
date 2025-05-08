@@ -7,7 +7,6 @@ import { Message, MessageSpeaker } from '../types';
 
 export function useCallJessicaDialog() {
   const dispatch = useDispatch();
-
   const activeResponse = useSelector(
     ({ call }: RootState) => call.activeResponse
   );
@@ -20,7 +19,7 @@ export function useCallJessicaDialog() {
     ),
   });
 
-  const handleFinish = useCallback(() => {
+  const handleMessageFinish = useCallback(() => {
     if (activeResponse) {
       setMessages((prev) => [
         ...prev,
@@ -30,9 +29,9 @@ export function useCallJessicaDialog() {
           time: dayjs(),
         },
       ]);
-    }
 
-    dispatch(updateActiveResponse(null));
+      dispatch(updateActiveResponse(null));
+    }
   }, [activeResponse, dispatch]);
 
   const handleRecordEnd = useCallback(
@@ -52,7 +51,7 @@ export function useCallJessicaDialog() {
 
   return {
     dialing: messages.length === 0 && !activeResponse,
-    handleFinish,
+    handleMessageFinish,
     handleRecordEnd,
     messages,
   };

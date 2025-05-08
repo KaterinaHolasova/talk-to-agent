@@ -6,7 +6,7 @@ type StartTime = string;
 
 export interface CallState {
   activeResponse: ActiveResponse | null;
-  startTime?: StartTime | null;
+  startTime: StartTime | null;
 }
 
 const initialState: CallState = {
